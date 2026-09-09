@@ -145,13 +145,14 @@ export async function buscarMeusAgendamentos() {
 
 
 // Código de login com Google
+// Código de login com Google
 export async function signInWithGoogle() {
     try {
         const { error } = await supabase.auth.signInWithOAuth({
             provider: 'google',
             options: {
-                // A URL para onde o usuário volta após o login
-                redirectTo: 'http://127.0.0.1:5500/TCC-ESTETICA (0206)/index.html' 
+                // Pega automaticamente o domínio atual (Vercel ou Localhost) e aponta para o index.html
+                redirectTo: window.location.origin + '/index.html'
             }
         });
 
