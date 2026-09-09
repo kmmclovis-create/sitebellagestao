@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Carrinho - Bella</title>
+
+
+    <!-- =====================================================
+         FONT AWESOME
+    ====================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+
+    <!-- =====================================================
+         CSS
+    ====================================================== -->
+
+    <link rel="stylesheet" href="css/carrinho.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================================
+         HEADER
+         Cabeçalho fixo com logo, menu e ícones de acesso rápido.
+    ========================================================= -->
+
+    <header class="header" id="header">
+
+        <!-- Logo da Bella Gestão. Ao clicar, volta para o início. -->
+        <a href="#home" class="logo">
+        Bella<span>.</span>
+        </a>
+        <!-- Checkbox usado para controlar o menu no celular. -->
+        <input type="checkbox" id="menu-toggle">
+
+        <!-- Ícone do menu mobile. -->
+        <label for="menu-toggle" class="menu-icon">
+            <i class="fa-solid fa-bars"></i>
+        </label>
+
+        <!-- Menu principal de navegação do site. -->
+        <nav class="navbar">
+            <a href="index.html#home">Home</a>
+            <a href="procedimentos.html">Procedimentos</a>
+            <a href="agendamento.html">Agendamentos</a>
+            <a href="loja.html">Loja</a>
+            <a href="index.html#about">Sobre Nós</a>
+            <a href="index.html#contact">Contato</a>
+        </nav>
+
+        <!-- Ícones de acesso rápido para serviços e agendamento. -->
+        <div class="header-icons">
+            <a href="perfil.html" class="user-icon" id="linkPerfilHeader">
+    <img src="icons/userpadrao.jpg" alt="Perfil" id="fotoHeader" style="width: 35px; height: 35px; border-radius: 50%; object-fit: cover;">
+</a>
+        </div>
+
+    </header>
+
+
+        <!-- =====================================================
+             ÍCONES
+        ====================================================== -->
+
+        <div class="header-icons">
+
+
+            <!-- PERFIL -->
+
+            <a
+                href="login.html"
+                title="Perfil"
+            >
+                <i class="fa-regular fa-user"></i>
+            </a>
+
+
+            <!-- CARRINHO -->
+
+            <a
+                href="carrinho.html"
+                title="Carrinho"
+                class="cart-icon"
+            >
+
+                <i class="fa-solid fa-cart-shopping"></i>
+
+                <span id="cartCount">
+                    0
+                </span>
+
+            </a>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =========================================================
+         HERO
+    ========================================================== -->
+
+    <section class="carrinho-hero">
+
+        <div class="carrinho-intro">
+
+            <span class="section-label">
+                BELLA
+            </span>
+
+            <h1>
+                Meu
+                <span>Carrinho</span>
+            </h1>
+
+            <p>
+                Confira seus produtos antes de finalizar o pedido.
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================================
+         CARRINHO
+    ========================================================== -->
+
+    <main class="carrinho-page">
+
+
+        <div class="container">
+
+
+            <!-- =================================================
+                 PRODUTOS
+            ================================================== -->
+
+            <section
+                class="cart-items"
+                aria-label="Itens do carrinho"
+            >
+
+
+                <div class="cart-title">
+
+                    <div>
+
+                        <span class="section-label">
+                            SUA SELEÇÃO
+                        </span>
+
+                        <h2>
+                            Itens no Carrinho
+                        </h2>
+
+                    </div>
+
+
+                    <span
+                        class="cart-total-items"
+                        id="cartItemsLabel"
+                    >
+                        0 itens
+                    </span>
+
+                </div>
+
+
+                <!-- LISTA DOS PRODUTOS -->
+
+                <div id="cartList"></div>
+
+
+                <!-- =================================================
+                     CARRINHO VAZIO
+                ================================================== -->
+
+                <div
+                    class="empty-cart"
+                    id="emptyCart"
+                    style="display: none;"
+                >
+
+                    <i class="fa-solid fa-cart-shopping"></i>
+
+                    <h3>
+                        Seu carrinho está vazio
+                    </h3>
+
+                    <p>
+                        Adicione produtos da nossa loja
+                        para vê-los aqui.
+                    </p>
+
+
+                    <a
+                        href="loja.html"
+                        class="btn-voltar-loja"
+                    >
+
+                        <i class="fa-solid fa-store"></i>
+
+                        Ir para a loja
+
+                    </a>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 RESUMO
+            ================================================== -->
+
+            <aside class="summary">
+
+
+                <span class="section-label">
+                    RESUMO
+                </span>
+
+
+                <h3>
+                    Resumo do pedido
+                </h3>
+
+
+                <div class="summary-line">
+
+                    <span>
+                        Total dos produtos
+                    </span>
+
+                    <span id="total-products">
+                        R$ 0,00
+                    </span>
+
+                </div>
+
+
+                <div class="summary-line">
+
+                    <span>
+                        Frete
+                    </span>
+
+                    <span class="free-shipping">
+                        Grátis
+                    </span>
+
+                </div>
+
+
+                <div class="summary-divider"></div>
+
+
+                <div class="summary-total">
+
+                    <span>
+                        Total
+                    </span>
+
+                    <strong id="total">
+                        R$ 0,00
+                    </strong>
+
+                </div>
+
+
+                <button
+                    class="checkout"
+                    type="button"
+                    id="checkoutButton"
+                >
+
+                    <i class="fa-solid fa-check"></i>
+
+                    Fazer Pedido
+
+                </button>
+
+
+                <a
+                    href="loja.html"
+                    class="continue-shopping"
+                >
+
+                    <i class="fa-solid fa-arrow-left"></i>
+
+                    Continuar comprando
+
+                </a>
+
+            </aside>
+
+        </div>
+
+    </main>
+
+
+
+    <!-- =========================================================
+         FOOTER
+    ========================================================== -->
+
+    <footer class="footer">
+
+
+        <div class="footer-grid">
+
+
+            <!-- MARCA -->
+
+            <div class="footer-box brand">
+
+                <a
+                    href="index.html#home"
+                    class="logo"
+                >
+                    Bella<span>.</span>
+                </a>
+
+
+                <p>
+                    Beleza, cuidado e bem-estar
+                    em um só lugar.
+                </p>
+
+
+                <div class="social">
+
+                    <a
+                        href="#"
+                        aria-label="Instagram"
+                    >
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+
+                    <a
+                        href="#"
+                        aria-label="WhatsApp"
+                    >
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </a>
+
+                    <a
+                        href="#"
+                        aria-label="Facebook"
+                    >
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </a>
+
+                    <a
+                        href="#"
+                        aria-label="TikTok"
+                    >
+                        <i class="fa-brands fa-tiktok"></i>
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- MENU -->
+
+            <div class="footer-box">
+
+                <h3>
+                    Menu
+                </h3>
+
+                <a href="index.html#home">
+                    Início
+                </a>
+
+                <a href="index.html#about">
+                    Sobre nós
+                </a>
+
+                <a href="procedimentos.html">
+                    Procedimentos
+                </a>
+
+                <a href="agendamento.html">
+                    Agendamentos
+                </a>
+
+            </div>
+
+
+
+            <!-- LOJA -->
+
+            <div class="footer-box">
+
+                <h3>
+                    Loja
+                </h3>
+
+                <a href="loja.html">
+                    Produtos
+                </a>
+
+                <a href="loja.html">
+                    Ofertas
+                </a>
+
+                <a href="carrinho.html">
+                    Carrinho
+                </a>
+
+            </div>
+
+
+
+            <!-- CONTATO -->
+
+            <div class="footer-box">
+
+                <h3>
+                    Contato
+                </h3>
+
+
+                <p>
+                    <i class="fa-solid fa-phone"></i>
+                    (11) 99999-9999
+                </p>
+
+
+                <p>
+                    <i class="fa-brands fa-whatsapp"></i>
+                    (11) 99999-9999
+                </p>
+
+
+                <p>
+                    <i class="fa-solid fa-envelope"></i>
+                    contato@bella.com
+                </p>
+
+
+                <p>
+                    <i class="fa-solid fa-location-dot"></i>
+                    São Paulo - SP
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- COPYRIGHT -->
+
+        <div class="credit">
+
+            <p>
+                © 2026
+                <span>Bella</span>.
+                Todos os direitos reservados.
+            </p>
+
+        </div>
+
+    </footer>
+
+
+
+    <!-- =========================================================
+         JAVASCRIPT
+    ========================================================== -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="javascript/supabase-config.js"></script>
+<script src="javascript/global-header.js"></script>
+    <script src="javascript/carrinho.js"></script>
+
+</body>
+
+</html>

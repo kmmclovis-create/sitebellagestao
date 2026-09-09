@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Perfil | Bella Estética</title>
+    <link rel="stylesheet" href="css/perfil.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
+    <!-- SDK do Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+
+<body>
+
+    <!-- ==================================================
+         HEADER
+    ================================================== -->
+
+    <header class="header" id="header">
+
+        <a href="index.html#home" class="logo">
+            Bella<span>.</span>
+        </a>
+
+        <input type="checkbox" id="menu-toggle">
+
+        <label for="menu-toggle" class="menu-icon">
+            <i class="fa-solid fa-bars"></i>
+        </label>
+
+        <nav class="navbar">
+            <a href="index.html#home">Home</a>
+            <a href="procedimentos.html">Procedimentos</a>
+            <a href="loja.html">Loja</a>
+            <a href="index.html#about">Sobre Nós</a>
+            <a href="index.html#contact">Contato</a>
+        </nav>
+
+    </header>
+
+
+    <!-- ==================================================
+         CONTEÚDO DO PERFIL
+    ================================================== -->
+
+    <main class="profile-content">
+
+        <!-- ==================================================
+             CABEÇALHO DO PERFIL
+        ================================================== -->
+
+        <div class="profile-header">
+
+            <div class="profile-photo">
+
+                <img src="icons/userpadrao.jpg"
+                    alt="Foto de perfil" id="fotoPerfil">
+
+            </div>
+
+
+        <div class="profile-info">
+
+            <h1 id="nomeUsuario"></h1>
+
+            <p class="email" id="emailUsuario">
+            
+            </p>
+
+            <p class="member" id="dataMembro">
+    <i class="fa-regular fa-calendar"></i>
+    Membro desde...
+</p>
+
+        </div>
+
+
+<a href="editar-perfil.html" class="edit-profile">
+
+    <i class="fa-solid fa-pen"></i>
+
+    Editar perfil
+
+</a>
+
+        </div>
+
+
+        <!-- ==================================================
+             ACESSO RÁPIDO
+        ================================================== -->
+
+
+            <!--Agendamentos-->
+            <a href="agenda.html" class="quick-card">
+
+                <div class="quick-icon">
+                    <i class="fa-regular fa-calendar"></i>
+                </div>
+
+                <div>
+                    <h3>Agendamentos</h3>
+
+                    <p>
+                        Veja e gerencie seus
+                        agendamentos
+                    </p>
+                </div>
+
+            </a>
+
+        </div>
+
+
+        <!-- ==================================================
+             OPÇÕES DO PERFIL
+        ================================================== -->
+
+        <div class="profile-options">
+
+            <a href="#" class="option">
+
+                <div class="option-icon">
+                    <i class="fa-regular fa-bell"></i>
+                </div>
+
+                <div class="option-text">
+
+                    <h3>Notificações</h3>
+
+                    <p>
+                        Gerencie lembretes de
+                        agendamentos e novidades
+                    </p>
+
+                </div>
+
+                <i class="fa-solid fa-chevron-right arrow"></i>
+
+            </a>
+
+
+            <a href="trocar-senha.html" class="option">
+
+                <div class="option-icon">
+                    <i class="fa-solid fa-lock"></i>
+                </div>
+
+            <div class="option-text">
+
+                <h3>Privacidade e segurança</h3>
+
+            </div>
+
+            <a href="#" class="option">
+
+                <div class="option-icon">
+                    <i class="fa-regular fa-credit-card"></i>
+                </div>
+
+                <div class="option-text">
+
+                    <h3>Formas de pagamento</h3>
+
+                    <p>
+                        Cartões cadastrados e
+                        histórico de pagamentos
+                    </p>
+
+                </div>
+
+                <i class="fa-solid fa-chevron-right arrow"></i>
+
+            </a>
+
+
+            <a href="#" class="option">
+
+                <div class="option-icon">
+                    <i class="fa-regular fa-circle-question"></i>
+                </div>
+
+                <div class="option-text">
+
+                    <h3>Ajuda e suporte</h3>
+
+                    <p>
+                        Perguntas frequentes
+                        e atendimento
+                    </p>
+
+                </div>
+
+                <i class="fa-solid fa-chevron-right arrow"></i>
+
+            </a>
+
+        </div>
+
+
+        <!-- ==================================================
+             CONTA
+        ================================================== -->
+
+        <div class="account-section">
+
+            <h2>Conta</h2>
+
+            <div class="account-options">
+
+                <a href="#" class="account-item logout-account" id="btnSair">
+    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+    <span>Sair da conta</span>
+    <i class="fa-solid fa-chevron-right"></i>
+</a>
+
+            </div>
+
+        </div>
+
+    </main>
+
+  <!-- SDK do Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
+    <!-- 1. O arquivo que cria a variável window.supabase -->
+    <script src="javascript/supabase-config.js"></script>
+    
+    <!-- 2. O seu script de perfil -->
+    <script src="javascript/perfil.js"></script>
+</body>
+</body>
+
+</html>
+
+</body>
+
+</html>

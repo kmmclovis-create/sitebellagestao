@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Meus Agendamentos | Bella Estética</title>
+
+    <link rel="stylesheet" href="css/agenda.css">
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- ==================================================
+         HEADER
+    ================================================== -->
+
+    <header class="header" id="header">
+
+        <a href="index.html#home" class="logo">
+            Bella<span>.</span>
+        </a>
+
+
+        <input type="checkbox" id="menu-toggle">
+
+
+        <label for="menu-toggle" class="menu-icon">
+            <i class="fa-solid fa-bars"></i>
+        </label>
+
+
+        <nav class="navbar">
+
+            <a href="index.html#home">
+                Home
+            </a>
+
+            <a href="procedimentos.html">
+                Procedimentos
+            </a>
+
+            <a href="loja.html">
+                Loja
+            </a>
+
+            <a href="index.html#about">
+                Sobre Nós
+            </a>
+
+            <a href="index.html#contact">
+                Contato
+            </a>
+
+        </nav>
+
+    </header>
+
+
+
+    <!-- ==================================================
+         CONTEÚDO
+    ================================================== -->
+
+    <main class="agenda-content">
+
+
+        <!-- ==================================================
+             TÍTULO
+        ================================================== -->
+
+        <section class="agenda-title">
+
+            <span class="title-decoration">
+                <i class="fa-regular fa-calendar"></i>
+            </span>
+
+            <div>
+
+                <h1>
+                    Meus Agendamentos
+                </h1>
+
+                <p>
+                    Confira seus próximos procedimentos
+                    e acompanhe seus horários.
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ==================================================
+             ABAS
+        ================================================== -->
+
+        <div class="agenda-tabs">
+
+            <button class="tab active">
+                Próximos
+            </button>
+
+            <button class="tab">
+                Anteriores
+            </button>
+
+        </div>
+
+
+
+        <!-- ==================================================
+             PRÓXIMOS AGENDAMENTOS
+        ================================================== -->
+
+        <section class="appointments" id="listaAgendamentos">
+
+            <!--
+                 Os agendamentos são inseridos aqui dinamicamente
+                 pelo agenda.js, com base nos dados salvos em
+                 localStorage quando o cliente confirma um
+                 agendamento em agendamento.html.
+            -->
+
+        </section>
+
+
+
+        <!-- ==================================================
+             SEM AGENDAMENTOS
+        ================================================== -->
+
+        <section class="empty-agenda">
+
+            <div class="empty-icon">
+                <i class="fa-regular fa-calendar-xmark"></i>
+            </div>
+
+            <h2>
+                Nenhum agendamento encontrado
+            </h2>
+
+            <p>
+                Quando você marcar um procedimento,
+                ele aparecerá aqui.
+            </p>
+
+            <a href="procedimentos.html" class="schedule-button">
+                <i class="fa-solid fa-plus"></i>
+                Agendar procedimento
+            </a>
+
+        </section>
+
+
+    </main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="javascript/supabase-config.js"></script>
+    <script src="javascript/global-header.js"></script>
+
+    <!-- Script de listagem da agenda -->
+    <script src="javascript/agenda.js"></script>
+
+</body>
+
+</html>

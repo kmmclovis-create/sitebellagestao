@@ -1,0 +1,996 @@
+
+/* ==================================================
+   RESET
+================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+html {
+    font-size: 62.5%;
+
+    scroll-behavior: smooth;
+
+    scroll-padding-top: 10rem;
+}
+
+
+body {
+    min-height: 100vh;
+
+    background: var(--cream);
+
+    color: var(--dark);
+}
+
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+button {
+    font-family: inherit;
+}
+
+
+/* ==================================================
+   CORES
+================================================== */
+
+:root {
+
+    --pink: #c98291;
+
+    --dark-pink: #a95f70;
+
+    --rose: #e7b8c0;
+
+    --light-pink: #f9edef;
+
+    --nude: #f5eee9;
+
+    --cream: #fcf8f5;
+
+    --gold: #b18a52;
+
+    --dark: #3d3034;
+
+    --gray: #7c7074;
+
+    --white: #ffffff;
+
+    --border: #e9dddf;
+
+}
+
+
+/* ==================================================
+   HEADER
+================================================== */
+
+.header {
+
+    position: fixed;
+
+    top: 0;
+    left: 0;
+    right: 0;
+
+    z-index: 1000;
+
+    height: 9rem;
+
+    padding: 0 9%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    background: rgba(255, 255, 255, .97);
+
+    box-shadow:
+        0 .3rem 1.5rem rgba(70, 40, 50, .07);
+}
+
+
+/* ==================================================
+   LOGO
+================================================== */
+
+.logo {
+
+    color: var(--dark);
+
+    font-family: Georgia, serif;
+
+    font-size: 3.2rem;
+
+    font-weight: 700;
+
+    letter-spacing: -.1rem;
+}
+
+
+.logo span {
+    color: var(--pink);
+}
+
+
+/* ==================================================
+   MENU
+================================================== */
+
+.navbar {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 2.8rem;
+
+    flex: 1;
+}
+
+
+.navbar a {
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    color: var(--dark);
+
+    font-size: 1.5rem;
+
+    white-space: nowrap;
+
+    transition: .3s;
+}
+
+
+.navbar a::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+
+    bottom: -.7rem;
+
+    width: 0;
+
+    height: .2rem;
+
+    background: var(--pink);
+
+    transition: .3s;
+}
+
+
+.navbar a:hover {
+    color: var(--pink);
+}
+
+
+.navbar a:hover::after {
+    width: 100%;
+}
+
+
+/* ==================================================
+   MENU MOBILE
+================================================== */
+
+#menu-toggle {
+    display: none;
+}
+
+
+.menu-icon {
+
+    display: none;
+
+    font-size: 2.5rem;
+
+    color: var(--dark);
+
+    cursor: pointer;
+}
+
+
+/* ==================================================
+   CONTEÚDO
+================================================== */
+
+.agenda-content {
+
+    width: 100%;
+
+    max-width: 1150px;
+
+    margin: 0 auto;
+
+    padding: 13rem 4rem 6rem;
+}
+
+
+/* ==================================================
+   TÍTULO
+================================================== */
+
+.agenda-title {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 1.8rem;
+
+    margin-bottom: 3rem;
+}
+
+
+.title-decoration {
+
+    width: 6rem;
+    height: 6rem;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: var(--light-pink);
+
+    color: var(--pink);
+
+    font-size: 2.5rem;
+}
+
+
+.agenda-title h1 {
+
+    font-size: 3rem;
+
+    color: var(--dark);
+
+    margin-bottom: .6rem;
+}
+
+
+.agenda-title p {
+
+    font-size: 1.5rem;
+
+    color: var(--gray);
+
+    line-height: 1.5;
+}
+
+
+/* ==================================================
+   ABAS
+================================================== */
+
+.agenda-tabs {
+
+    display: flex;
+
+    gap: 3rem;
+
+    margin-bottom: 2rem;
+
+    border-bottom: 1px solid var(--border);
+}
+
+
+.tab {
+
+    position: relative;
+
+    border: none;
+
+    background: transparent;
+
+    padding: 1.2rem .3rem;
+
+    color: var(--gray);
+
+    font-size: 1.5rem;
+
+    cursor: pointer;
+
+    transition: .3s;
+}
+
+
+.tab.active {
+
+    color: var(--dark-pink);
+
+    font-weight: 600;
+}
+
+
+.tab.active::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    right: 0;
+
+    bottom: -.1rem;
+
+    height: .2rem;
+
+    background: var(--pink);
+}
+
+
+.tab:hover {
+    color: var(--pink);
+}
+
+
+/* ==================================================
+   AGENDAMENTOS
+================================================== */
+
+.appointments {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 1.8rem;
+}
+
+
+/* ==================================================
+   CARD DO AGENDAMENTO
+================================================== */
+
+.appointment-card {
+
+    display: flex;
+
+    overflow: hidden;
+
+    background: var(--white);
+
+    border: 1px solid var(--border);
+
+    border-radius: 2rem;
+
+    box-shadow:
+        0 .7rem 2.5rem rgba(70, 40, 50, .05);
+
+    transition: .3s;
+}
+
+
+.appointment-card:hover {
+
+    transform: translateY(-.3rem);
+
+    box-shadow:
+        0 1rem 2.8rem rgba(70, 40, 50, .08);
+
+    border-color: var(--rose);
+}
+
+
+/* ==================================================
+   DATA
+================================================== */
+
+.appointment-date {
+
+    width: 13rem;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: var(--light-pink);
+
+    border-right: 1px solid var(--border);
+}
+
+
+.appointment-date .month {
+
+    color: var(--dark-pink);
+
+    font-size: 1.3rem;
+
+    font-weight: 600;
+
+    letter-spacing: .1rem;
+}
+
+
+.appointment-date strong {
+
+    margin: .3rem 0;
+
+    color: var(--dark);
+
+    font-size: 3.6rem;
+
+    line-height: 1;
+}
+
+
+.appointment-date .day {
+
+    color: var(--gray);
+
+    font-size: 1.2rem;
+
+    text-transform: uppercase;
+}
+
+
+/* ==================================================
+   INFORMAÇÕES
+================================================== */
+
+.appointment-info {
+
+    flex: 1;
+
+    padding: 2.2rem 2.5rem;
+}
+
+
+.appointment-top {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    justify-content: space-between;
+
+    gap: 2rem;
+}
+
+
+.appointment-category {
+
+    display: inline-block;
+
+    margin-bottom: .5rem;
+
+    color: var(--pink);
+
+    font-size: 1.2rem;
+
+    font-weight: 600;
+
+    text-transform: uppercase;
+
+    letter-spacing: .05rem;
+}
+
+
+.appointment-info h2 {
+
+    color: var(--dark);
+
+    font-size: 1.9rem;
+}
+
+
+/* ==================================================
+   STATUS
+================================================== */
+
+.status {
+
+    padding: .6rem 1rem;
+
+    border-radius: 2rem;
+
+    font-size: 1.2rem;
+
+    white-space: nowrap;
+}
+
+
+.status.confirmed {
+
+    background: #edf7ef;
+
+    color: #56835e;
+}
+
+
+.status.pending {
+
+    background: #fff5e7;
+
+    color: #a87c42;
+}
+
+
+/* ==================================================
+   DETALHES
+================================================== */
+
+.appointment-details {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 2rem;
+
+    margin-top: 1.5rem;
+}
+
+
+.appointment-details span {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: .6rem;
+
+    color: var(--gray);
+
+    font-size: 1.3rem;
+}
+
+
+.appointment-details i {
+    color: var(--pink);
+}
+
+
+/* ==================================================
+   AÇÕES
+================================================== */
+
+.appointment-actions {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 1.5rem;
+
+    margin-top: 1.8rem;
+}
+
+
+.details-button {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: .7rem;
+
+    border: none;
+
+    background: transparent;
+
+    color: var(--dark-pink);
+
+    font-size: 1.3rem;
+
+    cursor: pointer;
+
+    transition: .3s;
+}
+
+
+.details-button:hover {
+    color: var(--pink);
+}
+
+
+.cancel-button {
+
+    border: none;
+
+    background: transparent;
+
+    color: #d4777d;
+
+    font-size: 1.3rem;
+
+    cursor: pointer;
+
+    transition: .3s;
+}
+
+
+.cancel-button:hover {
+    color: #b84f58;
+}
+
+
+/* ==================================================
+   ESTADO VAZIO
+================================================== */
+
+.empty-agenda {
+
+    display: none;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 6rem 2rem;
+
+    margin-top: 2rem;
+
+    background: var(--white);
+
+    border: 1px solid var(--border);
+
+    border-radius: 2rem;
+}
+
+
+.empty-icon {
+
+    width: 7rem;
+    height: 7rem;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 2rem;
+
+    border-radius: 50%;
+
+    background: var(--light-pink);
+
+    color: var(--pink);
+
+    font-size: 2.8rem;
+}
+
+
+.empty-agenda h2 {
+
+    margin-bottom: .8rem;
+
+    color: var(--dark);
+
+    font-size: 2rem;
+}
+
+
+.empty-agenda p {
+
+    max-width: 35rem;
+
+    margin-bottom: 2rem;
+
+    color: var(--gray);
+
+    font-size: 1.4rem;
+
+    line-height: 1.5;
+}
+
+
+.schedule-button {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: .8rem;
+
+    padding: 1.2rem 1.8rem;
+
+    border-radius: 1rem;
+
+    background: var(--pink);
+
+    color: var(--white);
+
+    font-size: 1.4rem;
+
+    transition: .3s;
+}
+
+
+.schedule-button:hover {
+
+    background: var(--dark-pink);
+
+    transform: translateY(-.2rem);
+}
+
+
+/* ==================================================
+   TABLET
+================================================== */
+
+@media (max-width: 1000px) {
+
+    .header {
+        padding: 0 5%;
+    }
+
+    .navbar {
+        gap: 1.7rem;
+    }
+
+    .navbar a {
+        font-size: 1.35rem;
+    }
+
+    .agenda-content {
+        padding-left: 3rem;
+        padding-right: 3rem;
+    }
+
+}
+
+
+/* ==================================================
+   CELULAR
+================================================== */
+
+@media (max-width: 768px) {
+
+    .header {
+
+        height: 7.5rem;
+
+        padding: 0 2rem;
+    }
+
+
+    .logo {
+        font-size: 2.7rem;
+    }
+
+
+    .menu-icon {
+        display: block;
+    }
+
+
+    .navbar {
+
+        position: absolute;
+
+        top: 7.5rem;
+
+        left: 0;
+        right: 0;
+
+        display: none;
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 0;
+
+        padding: 1.5rem 2rem;
+
+        background: var(--white);
+
+        box-shadow:
+            0 .8rem 1.5rem rgba(70, 40, 50, .08);
+    }
+
+
+    .navbar a {
+
+        width: 100%;
+
+        justify-content: flex-start;
+
+        padding: 1.4rem 0;
+
+        font-size: 1.5rem;
+    }
+
+
+    .navbar a::after {
+        display: none;
+    }
+
+
+    #menu-toggle:checked ~ .navbar {
+        display: flex;
+    }
+
+
+    /* CONTEÚDO */
+
+    .agenda-content {
+
+        padding: 10rem 1.5rem 4rem;
+    }
+
+
+    /* TÍTULO */
+
+    .agenda-title {
+
+        align-items: flex-start;
+
+        gap: 1.2rem;
+
+        margin-bottom: 2.5rem;
+    }
+
+
+    .title-decoration {
+
+        width: 5rem;
+        height: 5rem;
+
+        font-size: 2rem;
+    }
+
+
+    .agenda-title h1 {
+        font-size: 2.3rem;
+    }
+
+
+    .agenda-title p {
+        font-size: 1.3rem;
+    }
+
+
+    /* CARD */
+
+    .appointment-card {
+        flex-direction: column;
+    }
+
+
+    .appointment-date {
+
+        width: 100%;
+
+        min-height: 7rem;
+
+        flex-direction: row;
+
+        gap: 1rem;
+
+        border-right: none;
+
+        border-bottom: 1px solid var(--border);
+    }
+
+
+    .appointment-date strong {
+
+        margin: 0;
+
+        font-size: 2.8rem;
+    }
+
+
+    .appointment-date .month,
+    .appointment-date .day {
+        font-size: 1.2rem;
+    }
+
+
+    .appointment-info {
+        padding: 2rem;
+    }
+
+
+    .appointment-top {
+        flex-direction: column;
+
+        gap: 1rem;
+    }
+
+
+    .appointment-info h2 {
+        font-size: 1.7rem;
+    }
+
+
+    .status {
+        align-self: flex-start;
+    }
+
+
+    .appointment-details {
+
+        flex-direction: column;
+
+        gap: 1rem;
+
+        margin-top: 1.5rem;
+    }
+
+
+    .appointment-actions {
+
+        flex-wrap: wrap;
+    }
+
+}
+
+
+/* ==================================================
+   CELULARES PEQUENOS
+================================================== */
+
+@media (max-width: 450px) {
+
+    .agenda-content {
+
+        padding-left: 1.2rem;
+
+        padding-right: 1.2rem;
+    }
+
+
+    .agenda-tabs {
+        gap: 2rem;
+    }
+
+
+    .appointment-info {
+        padding: 1.8rem;
+    }
+
+
+    .appointment-actions {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 1.2rem;
+    }
+
+}

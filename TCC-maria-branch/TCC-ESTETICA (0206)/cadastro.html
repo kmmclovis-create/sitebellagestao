@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/autenticacao.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script type="module" src="javascript/db.js"></script>
+
+    <title>Cadastro - Bella Gestão</title>
+</head>
+
+<body class="auth-page">
+
+    <main class="auth-container">
+
+        <section class="auth-card" aria-labelledby="titulo-cadastro">
+
+            <a href="index.html" class="auth-brand">
+                Bella<span>.</span>
+            </a>
+
+            <span class="section-label">
+                SEJA BEM-VINDO
+            </span>
+
+            <h1 id="titulo-cadastro" class="heading">
+                Crie sua <span>conta</span>
+            </h1>
+
+            <p class="section-description">
+                Cadastre-se para ter acesso aos nossos serviços e agendamentos.
+            </p>
+
+            <form id="signupForm" class="auth-form" autocomplete="off">
+
+                <div class="auth-group">
+
+                    <label class="auth-label" for="username">
+                        Usuário
+                    </label>
+
+                    <input
+                        class="auth-input"
+                        id="username"
+                        name="username"
+                        type="text"
+                        placeholder="Digite seu nome de usuário"
+                        autocomplete="username"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="auth-group">
+
+                    <label class="auth-label" for="phone">
+                        Telefone
+                    </label>
+
+                    <input
+                        class="auth-input"
+                        id="phone"
+                        name="phone"
+                        type="tel"
+                        placeholder="(11) 99999-9999"
+                        pattern="\([0-9]{2}\) [0-9]{4,5}-[0-9]{4}"
+                        autocomplete="tel"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="auth-group">
+
+                    <label class="auth-label" for="email">
+                        E-mail
+                    </label>
+
+                    <input
+                        class="auth-input"
+                        id="email"
+                        name="email"
+                        type="email"
+                        placeholder="exemplo@gmail.com"
+                        autocomplete="email"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="auth-group">
+
+                    <label class="auth-label" for="password">
+                        Senha
+                    </label>
+
+                    <input
+                        class="auth-input"
+                        id="password"
+                        name="password"
+                        type="password"
+                        placeholder="Digite sua senha"
+                        autocomplete="new-password"
+                        required
+                    >
+
+                </div>
+
+
+                <button
+                    class="auth-submit"
+                    type="submit"
+                >
+                    Criar minha conta
+                </button>
+
+            </form>
+
+
+            <div class="auth-divider">
+                <span>ou</span>
+            </div>
+
+
+            <p class="auth-link">
+                Já tem uma conta?
+                <a href="login.html">Entrar</a>
+            </p>
+
+
+            <a href="index.html" class="auth-back">
+                ← Voltar para a página inicial
+            </a>
+
+        </section>
+
+    </main>
+
+
+    <script src="javascript/cadastro.js"></script>
+    <script src="javascript/mascara-senha.js"></script>
+
+</body>
+</html>

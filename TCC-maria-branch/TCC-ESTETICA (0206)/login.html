@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/autenticacao.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script type="module" src="javascript/db.js"></script>
+
+    <title>Login - Bella Gestão</title>
+</head>
+
+<body class="auth-page">
+
+    <main class="auth-container">
+        <section class="auth-card" aria-labelledby="titulo-login">
+
+            <a href="index.html" class="auth-brand">
+                Bella<span>.</span>
+            </a>
+
+            <span class="section-label">ÁREA DO CLIENTE</span>
+
+            <h1 id="titulo-login" class="heading">
+                Bem-vindo <span>de volta</span>
+            </h1>
+
+            <p class="section-description">
+                Entre na sua conta para continuar seu atendimento na Bella Gestão.
+            </p>
+
+            <form id="loginForm" class="auth-form" autocomplete="off">
+
+                <div class="auth-group">
+                    <label class="auth-label" for="email">
+                        E-mail
+                    </label>
+
+                    <input
+                        class="auth-input"
+                        id="email"
+                        name="email"
+                        type="email"
+                        placeholder="exemplo@gmail.com"
+                        autocomplete="username"
+                        required
+                    >
+                </div>
+
+                <div class="auth-group">
+                    <label class="auth-label" for="password">
+                        Senha
+                    </label>
+
+                    <input
+                        class="auth-input"
+                        id="password"
+                        name="password"
+                        type="password"
+                        placeholder="Digite sua senha"
+                        autocomplete="current-password"
+                        required
+                    >
+                </div>
+
+                <button class="auth-submit" type="submit">
+                    Entrar
+                </button>
+
+            </form>
+
+            <div class="auth-divider">
+                <span>ou</span>
+            </div>
+            <button id="btnGoogle" type="button" style="width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px; background-color: #fff; cursor: pointer; font-weight: bold; color: #555; display: flex; justify-content: center; align-items: center; gap: 8px;">
+    <!-- Opcional: Ícone do Google em SVG ou FontAwesome aqui -->
+    Entrar com Google
+</button>
+            <p class="auth-link">
+                Ainda não tem uma conta?
+                <a href="cadastro.html">Cadastre-se</a>
+            </p>
+
+            <a href="index.html" class="auth-back">
+                ← Voltar para a página inicial
+            </a>
+
+        </section>
+    </main>
+ <script src="javascript/mascara-senha.js"></script>
+</body>
+</html>

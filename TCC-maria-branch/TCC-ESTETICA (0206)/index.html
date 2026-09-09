@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Bella Gestão | Cuidando da sua beleza</title>
+    
+</head>
+<body>
+
+    <!-- =========================================================
+         HEADER
+         Cabeçalho fixo com logo, menu e ícones de acesso rápido.
+    ========================================================= -->
+
+    <header class="header" id="header">
+
+        <!-- Logo da Bella Gestão. Ao clicar, volta para o início. -->
+        <a href="#home" class="logo">
+        Bella<span>.</span>
+        </a>
+        <!-- Checkbox usado para controlar o menu no celular. -->
+        <input type="checkbox" id="menu-toggle">
+
+        <!-- Ícone do menu mobile. -->
+        <label for="menu-toggle" class="menu-icon">
+            <i class="fa-solid fa-bars"></i>
+        </label>
+
+        <!-- Menu principal de navegação do site. -->
+        <nav class="navbar">
+            <a href="#home">Home</a>
+            <a href="procedimentos.html">Procedimentos</a>
+            <a href="agenda.html">Agendamentos</a>
+            <a href="loja.html">Loja</a>
+            <a href="#about">Sobre Nós</a>
+            <a href="#contact">Contato</a>
+        </nav>
+
+        <!-- Ícones de acesso rápido para serviços e agendamento. -->
+       <div class="header-icons">
+    <a href="perfil.html" class="user-icon" id="linkPerfilHeader">
+    <img src="icons/userpadrao.jpg" alt="Perfil" id="fotoHeader" style="width: 35px; height: 35px; border-radius: 50%; object-fit: cover;">
+</a>
+</div>
+    </header>
+
+
+    <!-- =========================================================
+         HOME
+         Boas-vindas e destaque em slider.
+    ========================================================= -->
+
+    <section class="home" id="home">
+
+        <div class="home-content">
+
+            <span class="small-title">
+                Beleza • Cuidado • Bem-estar
+            </span>
+
+            <h1>
+                Sejam todos bem-vindos à
+                <span>Bella Gestão</span>
+            </h1>
+
+            <p>
+                Nosso site foi criado para ser um meio rápido e confortável
+                para encontrar aquilo que você busca na área da beleza e
+                autoestima. Venha realçar sua beleza natural e renovar suas
+                energias conosco!
+            </p>
+
+            <div class="home-buttons">
+                <a href="#services" class="btn">
+                    Conheça nossos serviços
+                </a>
+
+                <a href="procedimentos.html" class="btn btn-outline">
+                    Agendar horário
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- =========================================================
+         ABOUT
+         Apresenta a Bella Gestão.
+    ========================================================= -->
+
+    <section class="about" id="about">
+
+        <h2 class="heading">
+            Sobre a <span>Bella Gestão</span>
+        </h2>
+
+        <div class="about-row">
+
+            <div class="about-image">
+
+                <img
+                    src="fotos/limpeza-de-pele.png"
+                    alt="Tratamento de estética facial"
+                >
+
+                <div class="experience">
+                    <strong>+15</strong>
+                    <span>anos cuidando<br>de você</span>
+                </div>
+
+            </div>
+
+            <div class="about-content">
+
+                <span class="section-label">
+                    QUEM SOMOS
+                </span>
+
+                <h3>
+                    Beleza que começa
+                    com o cuidado.
+                </h3>
+
+                <p>
+                    A Bella Gestão nasceu com o propósito de oferecer
+                    momentos de cuidado, relaxamento e autoestima, em um
+                    espaço pensado para você se sentir bem em cada detalhe.
+                </p>
+
+                <p>
+                    Trabalhamos com procedimentos selecionados e
+                    atendimento personalizado para valorizar a beleza
+                    única de cada cliente.
+                </p>
+
+                <div class="about-list">
+
+                    <div>
+                        <i class="fa-solid fa-check"></i>
+                        Atendimento personalizado
+                    </div>
+
+                    <div>
+                        <i class="fa-solid fa-check"></i>
+                        Ambiente confortável
+                    </div>
+
+                    <div>
+                        <i class="fa-solid fa-check"></i>
+                        Profissionais especializados
+                    </div>
+
+                    <div>
+                        <i class="fa-solid fa-check"></i>
+                        Produtos selecionados
+                    </div>
+
+                </div>
+
+                <a href="procedimentos.html" class="btn">
+                    Agende seu horário
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         BENEFÍCIOS
+         Faixa com os principais diferenciais.
+    ========================================================= -->
+
+    <section class="icons-container">
+
+        <div class="icons">
+            <i class="fa-solid fa-spa"></i>
+            <div class="info">
+                <h3>Atendimento personalizado</h3>
+                <span>Cada cliente é única</span>
+            </div>
+        </div>
+
+        <div class="icons">
+            <i class="fa-solid fa-star"></i>
+            <div class="info">
+                <h3>Qualidade</h3>
+                <span>Produtos selecionados</span>
+            </div>
+        </div>
+
+        <div class="icons">
+            <i class="fa-solid fa-heart"></i>
+            <div class="info">
+                <h3>Seu momento</h3>
+                <span>Cuide de você</span>
+            </div>
+        </div>
+
+        <div class="icons">
+            <i class="fa-solid fa-clock"></i>
+            <div class="info">
+                <h3>Agendamento</h3>
+                <span>Horários flexíveis</span>
+            </div>
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         SERVICES
+         Principais serviços oferecidos pela Bella Gestão,
+         divididos entre Procedimentos e Produtos.
+    ========================================================= -->
+
+    <section class="services" id="services">
+
+        <h2 class="heading">
+            Principais <span>Serviços</span>
+        </h2>
+
+        <p class="section-description">
+            Veja alguns dos nossos serviços mais requisitados e escolha
+            o cuidado ideal para você.
+        </p>
+
+        <!-- ===== Grupo: Procedimentos ===== -->
+
+        <div class="service-group">
+
+            <div class="service-group-title">
+                <h3>Procedimentos</h3>
+                <span>Cuidados feitos aqui, com a Bella</span>
+            </div>
+
+            <div class="service-grid">
+
+                <!-- Serviço 1: Depilação Feminina -->
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="fotos/depilacao.avif" alt="Depilação Feminina">
+                    </div>
+                    <div class="service-info">
+                        <div class="service-icon">
+                            <i class="fa-solid fa-scissors"></i>
+                        </div>
+                        <h3>Depilação Feminina</h3>
+                        <p>Pele lisa e macia com técnicas seguras e cuidadosas para todos os tipos de pele.</p>
+                        <a href="procedimentos.html">Saiba Mais <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- Serviço 2: Estética Facial -->
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="fotos/limpeza-de-pele.png" alt="Estética Facial">
+                    </div>
+                    <div class="service-info">
+                        <div class="service-icon">
+                            <i class="fa-solid fa-face-smile-beam"></i>
+                        </div>
+                        <h3>Estética Facial</h3>
+                        <p>Tratamentos especializados para manter sua pele saudável e radiante.</p>
+                        <a href="procedimentos.html">Saiba Mais <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- Serviço 3: Sobrancelhas -->
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="fotos/sobrancelhas.jpg" alt="Sobrancelhas">
+                    </div>
+                    <div class="service-info">
+                        <div class="service-icon">
+                            <i class="fa-solid fa-syringe"></i>
+                        </div>
+                        <h3>Sobrancelhas</h3>
+                        <p>Resultado natural e duradouro para realçar seus traços.</p>
+                        <a href="procedimentos.html">Saiba Mais <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- ===== Grupo: Produtos ===== -->
+
+        <div class="service-group">
+
+            <div class="service-group-title">
+                <h3>Produtos</h3>
+                <span>Para continuar o cuidado em casa</span>
+            </div>
+
+            <div class="service-grid">
+
+                <!-- Produto 1: Hidratação -->
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="fotos/hidratacao.jpeg" alt="Hidratação">
+                    </div>
+                    <div class="service-info">
+                        <div class="service-icon">
+                            <i class="fa-solid fa-droplet"></i>
+                        </div>
+                        <h3>Hidratação</h3>
+                        <p>Nutrição profunda para devolver o brilho e a maciez dos fios.</p>
+                        <a href="loja.html">Saiba Mais <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- Produto 2: Metal Detox -->
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="fotos/metal-detox.jpeg" alt="Metal Detox">
+                    </div>
+                    <div class="service-info">
+                        <div class="service-icon">
+                            <i class="fa-solid fa-leaf"></i>
+                        </div>
+                        <h3>Metal Detox</h3>
+                        <p>Remove resíduos metálicos e devolve a saúde e o equilíbrio dos fios.</p>
+                        <a href="loja.html">Saiba Mais <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- Produto 3: Reconstrução -->
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="fotos/reconstrucao.jpeg" alt="Reconstrução">
+                    </div>
+                    <div class="service-info">
+                        <div class="service-icon">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i>
+                        </div>
+                        <h3>Reconstrução</h3>
+                        <p>Recupera a estrutura dos fios danificados, trazendo força e vitalidade.</p>
+                        <a href="loja.html">Saiba Mais <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- Produto 4: Reparação -->
+                <div class="service-card">
+                    <div class="service-image">
+                        <img src="fotos/reparacao.jpeg" alt="Reparação">
+                    </div>
+                    <div class="service-info">
+                        <div class="service-icon">
+                            <i class="fa-solid fa-hand-sparkles"></i>
+                        </div>
+                        <h3>Reparação</h3>
+                        <p>Cuidado intensivo para selar as pontas e prevenir novos danos.</p>
+                        <a href="loja.html">Saiba Mais <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         CONTACT
+         Informações de contato e formulário de agendamento.
+    ========================================================= -->
+
+    <section class="contact" id="contact">
+
+        <h2 class="heading">
+            Fale <span>Conosco</span>
+        </h2>
+
+        <p class="section-description">
+            Estamos à disposição para tirar dúvidas e confirmar
+            seu horário. Entre em contato por qualquer um dos
+            canais abaixo.
+        </p>
+
+        <!-- Informações de contato. -->
+        <div class="contact-info">
+
+            <div>
+                <i class="fa-solid fa-phone"></i>
+
+                <div>
+                    <span>Telefone</span>
+                    <strong>(11) 99999-9999</strong>
+                </div>
+            </div>
+
+            <div>
+                <i class="fa-brands fa-whatsapp"></i>
+
+                <div>
+                    <span>WhatsApp</span>
+                    <strong>(11) 99999-9999</strong>
+                </div>
+            </div>
+
+            <div>
+                <i class="fa-solid fa-envelope"></i>
+
+                <div>
+                    <span>E-mail</span>
+                    <strong>contato@bellagestao.com</strong>
+                </div>
+            </div>
+
+            <div>
+                <i class="fa-solid fa-location-dot"></i>
+
+                <div>
+                    <span>Endereço</span>
+                    <strong>São Paulo - SP</strong>
+                </div>
+            </div>
+
+            <div>
+                <i class="fa-regular fa-clock"></i>
+
+                <div>
+                    <span>Horário</span>
+                    <strong>Seg a Sáb - 09h às 19h</strong>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= FOOTER ================= -->
+
+<footer class="footer">
+
+    <div class="footer-grid">
+
+
+        <!-- Informações principais da marca. -->
+        <div class="footer-box brand">
+
+            <!-- Logo. -->
+            <a href="#home" class="logo">
+                Bella<span>.</span>
+            </a>
+
+            <!-- Descrição da empresa. -->
+            <p>
+                Beleza, cuidado e bem-estar em um só lugar.
+                Um espaço pensado especialmente para você.
+            </p>
+
+            <!-- Links das redes sociais. -->
+            <div class="social">
+
+                <a href="#">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+
+                <a href="#">
+                    <i class="fa-brands fa-whatsapp"></i>
+                </a>
+
+                <a href="#">
+                    <i class="fa-brands fa-facebook-f"></i>
+                </a>
+
+                <a href="#">
+                    <i class="fa-brands fa-tiktok"></i>
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- Links principais do site. -->
+        <div class="footer-box">
+
+            <h3>Menu</h3>
+
+            <a href="#home">Início</a>
+            <a href="#about">Sobre nós</a>
+            <a href="#services">Serviços</a>
+            <a href="#contact">Contato</a>
+
+        </div>
+
+
+        <!-- Informações de contato. -->
+        <div class="footer-box">
+
+            <h3>Contato</h3>
+
+            <p>
+                <i class="fa-solid fa-phone"></i>
+                (11) 99999-9999
+            </p>
+
+            <p>
+                <i class="fa-brands fa-whatsapp"></i>
+                (11) 99999-9999
+            </p>
+
+            <p>
+                <i class="fa-solid fa-envelope"></i>
+                contato@bellagestao.com
+            </p>
+
+            <p>
+                <i class="fa-solid fa-location-dot"></i>
+                São Paulo - SP
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- Copyright e crédito do site. -->
+    <div class="credit">
+
+        <p>
+            © 2026 <span>Bella Gestão</span>.
+            Todos os direitos reservados.
+        </p>
+
+        <p>
+            Feito com <i class="fa-solid fa-heart"></i>
+        </p>
+
+    </div>
+
+</footer>
+<!-- 1. O SDK oficial do Supabase vem SEMPRE em primeiro lugar -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
+    <!-- 2. Depois o arquivo de configuração global -->
+    <script src="javascript/supabase-config.js"></script>
+    
+    <!-- 3. Depois o script do header global -->
+    <script src="javascript/global-header.js"></script>
+    
+    <!-- 4. Por fim, o seu script inline de verificação de login -->
+    <script>
+        document.getElementById('btnPerfilHeader').addEventListener('click', async (e) => {
+            e.preventDefault(); 
+
+            // Utiliza o cliente global configurado
+            const supabase = window.supabase;
+            if (!supabase) {
+                window.location.href = "login.html";
+                return;
+            }
+
+            const { data: { session } } = await supabase.auth.getSession();
+
+            if (session && session.user) {
+                window.location.href = "perfil.html"; // Logado
+            } else {
+                window.location.href = "login.html"; // Não logado
+            }
+        });
+    </script>
+</body>
+</body>
+</html>

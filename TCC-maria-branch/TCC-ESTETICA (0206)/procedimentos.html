@@ -1,0 +1,1555 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Procedimentos - Bella Gestão</title>
+
+
+    <!-- =====================================================
+         FONT AWESOME
+    ====================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"
+    >
+
+
+    <!-- CSS PRINCIPAL -->
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- CSS DA PÁGINA -->
+
+    <link rel="stylesheet" href="css/procedimentos.css">
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+         HEADER
+         Cabeçalho fixo com logo, menu e ícones de acesso rápido.
+    ========================================================= -->
+
+    <header class="header" id="header">
+
+        <!-- Logo da Mah Estética. Ao clicar, volta para o início. -->
+        <a href="index.html#home" class="logo">
+        Bella<span>.</span>
+        </a>
+        <!-- Checkbox usado para controlar o menu no celular. -->
+        <input type="checkbox" id="menu-toggle">
+
+        <!-- Ícone do menu mobile. -->
+        <label for="menu-toggle" class="menu-icon">
+            <i class="fa-solid fa-bars"></i>
+        </label>
+
+        <!-- Menu principal de navegação do site. -->
+        <nav class="navbar">
+            <a href="index.html#home">Home</a>
+            <a href="procedimentos.html" class="active">Procedimentos</a>
+            <a href="agenda.html">Agendamentos</a>
+            <a href="loja.html">Loja</a>
+            <a href="index.html#about">Sobre Nós</a>
+            <a href="index.html#contact">Contato</a>
+        </nav>
+
+        <!-- Ícones de acesso rápido para serviços e agendamento. -->
+        <div class="header-icons">
+            <a href="perfil.html" class="user-icon" id="linkPerfilHeader">
+    <img src="icons/userpadrao.jpg" alt="Perfil" id="fotoHeader" style="width: 35px; height: 35px; border-radius: 50%; object-fit: cover;">
+</a>
+
+    </header>
+
+
+
+
+<!-- =========================================================
+     HERO
+========================================================= -->
+
+<section class="procedimentos-hero">
+
+    <div class="procedimentos-intro">
+
+        <span class="section-label">
+            CUIDE DE VOCÊ
+        </span>
+
+
+        <h1>
+            Nossos
+            <span>Procedimentos</span>
+        </h1>
+
+
+        <p>
+            Encontre o procedimento ideal para você
+            e escolha o cuidado que melhor atende
+            às suas necessidades.
+        </p>
+
+    </div>
+
+
+    <!-- PESQUISA -->
+
+    <div class="search-container">
+
+        <i class="fa-solid fa-magnifying-glass"></i>
+
+
+        <input
+            id="query"
+            class="input"
+            type="search"
+            placeholder="Pesquisar procedimento..."
+            name="searchbar"
+            autocomplete="off"
+        >
+
+
+        <button
+            class="clear-btn"
+            id="clearBtn"
+            type="button"
+            aria-label="Limpar pesquisa"
+        >
+
+            <i class="fa-solid fa-xmark"></i>
+
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     ESTÉTICA
+========================================================= -->
+
+<section class="categoria">
+
+    <h2 class="titulo-categoria">
+        Estética
+    </h2>
+
+
+    <div class="container-procedimentos">
+
+
+        <!-- =================================================
+             SOBRANCELHAS
+        ================================================== -->
+
+        <div class="procedimento">
+
+            <div class="imagem-procedimento">
+
+                <img
+                    src="fotos/sobrancelhas.jpg"
+                    alt="Sobrancelhas"
+                >
+
+            </div>
+
+
+            <div class="conteudo-procedimento">
+
+                <h3>
+                    Sobrancelhas
+                </h3>
+
+
+                <p>
+                    Cuidados especializados para realçar
+                    o formato natural das sobrancelhas,
+                    proporcionando um olhar mais harmonioso.
+                </p>
+
+
+                <div class="opcoes-valor">
+
+                    <label>
+                        Opções:
+                    </label>
+
+
+                    <select
+                        class="variant-select"
+                        id="sobrancelhas-variantes"
+                    >
+
+                        <option
+                            value="R$ 35,00"
+                            data-price="R$ 35,00"
+                            data-duration="40 minutos"
+                            data-retoque="Não"
+                            data-profissional="Mailza N. Rufatto"
+                        >
+                            Design de sobrancelhas — R$ 35,00
+                        </option>
+
+
+                        <option
+                            value="R$ 45,00"
+                            data-price="R$ 45,00"
+                            data-duration="40 minutos"
+                            data-retoque="Não"
+                            data-profissional="Mailza N. Rufatto"
+                        >
+                            Sobrancelha com buço — R$ 45,00
+                        </option>
+
+
+                        <option
+                            value="R$ 55,00"
+                            data-price="R$ 55,00"
+                            data-duration="1 hora"
+                            data-retoque="Não"
+                            data-profissional="Mailza N. Rufatto"
+                        >
+                            Sobrancelha com henna — R$ 55,00
+                        </option>
+
+
+                        <option
+                            value="R$ 400,00"
+                            data-price="R$ 400,00"
+                            data-duration="1 hora e 30 minutos"
+                            data-retoque="Sim (Pós 30 dias)"
+                            data-profissional="Mailza N. Rufatto"
+                        >
+                            Micropigmentação — R$ 400,00
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="btn-agendar"
+                >
+                    Agende já
+                </button>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             DEPILAÇÃO FEMININA
+        ================================================== -->
+
+        <div class="procedimento">
+
+            <div class="imagem-procedimento">
+
+                <img
+                    src="fotos/depilacao.avif"
+                    alt="Depilação Feminina"
+                >
+
+            </div>
+
+
+            <div class="conteudo-procedimento">
+
+                <h3>
+                    Depilação Feminina
+                </h3>
+
+
+                <p>
+                    Procedimentos realizados com cuidado
+                    para proporcionar uma pele lisa,
+                    macia e bem cuidada.
+                </p>
+
+
+                <div class="opcoes-valor">
+
+                    <label>
+                        Opções:
+                    </label>
+
+
+                    <select
+                        class="variant-select"
+                        id="depilacao-variantes"
+                    >
+
+                        <option
+                            value="R$ 70,00"
+                            data-price="R$ 70,00"
+                            data-duration="30 minutos"
+                            data-retoque="Não"
+                            data-profissional="Mailza N. Rufatto"
+                        >
+                            Virilha completa frente e trás — R$ 70,00
+                        </option>
+
+
+                        <option
+                            value="R$ 60,00"
+                            data-price="R$ 60,00"
+                            data-duration="30 minutos"
+                            data-retoque="Não"
+                            data-profissional="Mailza N. Rufatto"
+                        >
+                            Virilha só frente — R$ 60,00
+                        </option>
+
+
+                        <option
+                            value="R$ 50,00"
+                            data-price="R$ 50,00"
+                            data-duration="30 minutos"
+                            data-retoque="Não"
+                            data-profissional="Mailza N. Rufatto"
+                        >
+                            Virilha lateral ou cavada — R$ 50,00
+                        </option>
+
+
+                        <option
+                            value="R$ 60,00"
+                            data-price="R$ 60,00"
+                            data-duration="30 minutos"
+                            data-retoque="A confirmar"
+                            data-profissional="Mailza N. Rufatto"
+                        >
+                            Pernas inteiras — R$ 60,00
+                        </option>
+
+
+                        <option
+                            value="R$ 45,00"
+                            data-price="R$ 45,00"
+                            data-duration="30 minutos"
+                            data-retoque="Não"
+                            data-profissional="Mailza N. Rufatto"
+                        >
+                            Meia pernas — R$ 45,00
+                        </option>
+
+
+                        <option
+                            value="R$ 45,00"
+                            data-price="R$ 45,00"
+                            data-duration="30 minutos"
+                            data-retoque="Não"
+                            data-profissional="Mailza N. Rufatto"
+                        >
+                            Braço — R$ 45,00
+                        </option>
+
+
+                        <option
+                            value="R$ 20,00"
+                            data-price="R$ 20,00"
+                            data-duration="30 minutos"
+                            data-retoque="Não"
+                            data-profissional="Mailza N. Rufatto"
+                        >
+                            Axilas ou buço — R$ 20,00
+                        </option>
+
+
+                        <option
+                            value="R$ 50,00"
+                            data-price="R$ 50,00"
+                            data-duration="30 minutos"
+                            data-retoque="Não"
+                            data-profissional="Mailza N. Rufatto"
+                        >
+                            Rosto (depilação facial) — R$ 50,00
+                        </option>
+
+
+                        <option
+                            value="R$ 25,00"
+                            data-price="R$ 25,00"
+                            data-duration="30 minutos"
+                            data-retoque="Não"
+                            data-profissional="Mailza N. Rufatto"
+                        >
+                            Barriga — R$ 25,00
+                        </option>
+
+
+                        <option
+                            value="R$ 25,00"
+                            data-price="R$ 25,00"
+                            data-duration="30 minutos"
+                            data-retoque="Não"
+                            data-profissional="Mailza N. Rufatto"
+                        >
+                            Bumbum — R$ 25,00
+                        </option>
+
+
+                        <option
+                            value="R$ 25,00"
+                            data-price="R$ 25,00"
+                            data-duration="30 minutos"
+                            data-retoque="Não"
+                            data-profissional="Mailza N. Rufatto"
+                        >
+                            Costas — R$ 25,00
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="btn-agendar"
+                >
+                    Agende já
+                </button>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             ESTÉTICA FACIAL
+        ================================================== -->
+
+        <div class="procedimento">
+
+            <div class="imagem-procedimento">
+
+                <img
+                    src="fotos/limpeza-de-pele.png"
+                    alt="Estética Facial"
+                >
+
+            </div>
+
+
+            <div class="conteudo-procedimento">
+
+                <h3>
+                    Estética Facial
+                </h3>
+
+
+                <p>
+                    Tratamentos especializados para cuidar
+                    da pele e proporcionar uma aparência
+                    mais saudável, limpa e radiante.
+                </p>
+
+
+                <div class="opcoes-valor">
+
+                    <label>
+                        Opções:
+                    </label>
+
+
+                    <select
+                        class="variant-select"
+                        id="estetica-facial-variantes"
+                    >
+
+                        <option
+                            value="R$ 140,00"
+                            data-price="R$ 140,00"
+                            data-duration="1 hora"
+                            data-retoque="Não"
+                            data-profissional="Mailza N. Rufatto"
+                        >
+                            Limpeza de pele — R$ 140,00
+                        </option>
+
+
+                        <option
+                            value="R$ 190,00"
+                            data-price="R$ 190,00"
+                            data-duration="1 hora"
+                            data-retoque="Não"
+                            data-profissional="Mailza N. Rufatto"
+                        >
+                            Limpeza com Derma ou Peeling — R$ 190,00
+                        </option>
+
+
+                        <option
+                            value="R$ 100,00"
+                            data-price="R$ 100,00"
+                            data-duration="1 hora"
+                            data-retoque="Não"
+                            data-profissional="Mailza N. Rufatto"
+                        >
+                            Dermaplaning — R$ 100,00
+                        </option>
+
+
+                        <option
+                            value="R$ 160,00"
+                            data-price="R$ 160,00"
+                            data-duration="1 hora"
+                            data-retoque="Não"
+                            data-profissional="Mailza N. Rufatto"
+                        >
+                            Microagulhamento — R$ 160,00
+                        </option>
+
+
+                        <option
+                            value="R$ 100,00"
+                            data-price="R$ 100,00"
+                            data-duration="1 hora"
+                            data-retoque="Não"
+                            data-profissional="Mailza N. Rufatto"
+                        >
+                            Peeling de diamante — R$ 100,00
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="btn-agendar"
+                >
+                    Agende já
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     CABELO
+========================================================= -->
+
+<section class="categoria">
+
+    <h2 class="titulo-categoria">
+        Cabelo
+    </h2>
+
+
+    <div class="container-procedimentos">
+
+
+        <!-- CORTE -->
+
+        <div class="procedimento">
+
+            <div class="imagem-procedimento">
+
+                <img
+                    src="fotos/corte.jpg"
+                    alt="Corte de cabelo"
+                >
+
+            </div>
+
+
+            <div class="conteudo-procedimento">
+
+                <h3>
+                    Corte
+                </h3>
+
+
+                <p>
+                    Corte personalizado pensado para
+                    valorizar seu estilo e a beleza
+                    natural dos seus cabelos.
+                </p>
+
+
+                <div class="opcoes-valor">
+
+                    <label>
+                        Opções:
+                    </label>
+
+
+                    <select
+                        class="variant-select"
+                        id="corte-variantes"
+                    >
+
+                        <option
+                            value="R$ 105,00"
+                            data-price="R$ 105,00"
+                            data-duration="A confirmar"
+                            data-retoque="A confirmar"
+                            data-profissional="Beatriz Bastos"
+                        >
+                            Corte — R$ 105,00
+                        </option>
+
+
+                        <option
+                            value="R$ 154,00"
+                            data-price="R$ 154,00"
+                            data-duration="A confirmar"
+                            data-retoque="A confirmar"
+                            data-profissional="Beatriz Bastos"
+                        >
+                            Corte bordado — R$ 154,00
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="btn-agendar"
+                >
+                    Agende já
+                </button>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- FINALIZAÇÃO -->
+
+        <div class="procedimento">
+
+            <div class="imagem-procedimento">
+
+                <img
+                    src="fotos/finalizacao.jpg"
+                    alt="Finalização de cabelo"
+                >
+
+            </div>
+
+
+            <div class="conteudo-procedimento">
+
+                <h3>
+                    Finalização
+                </h3>
+
+
+                <p>
+                    Técnicas para finalizar os fios,
+                    proporcionando definição, movimento
+                    e um acabamento bonito.
+                </p>
+
+
+                <div class="opcoes-valor">
+
+                    <label>
+                        Opções:
+                    </label>
+
+
+                    <select
+                        class="variant-select"
+                        id="finalizacao-variantes"
+                    >
+
+                        <option
+                            value="R$ 40,00"
+                            data-price="R$ 40,00"
+                            data-duration="A confirmar"
+                            data-retoque="A confirmar"
+                            data-profissional="Beatriz Bastos"
+                        >
+                            Lavagem — R$ 40,00
+                        </option>
+
+
+                        <option
+                            value="R$ 85,00"
+                            data-price="R$ 85,00"
+                            data-duration="A confirmar"
+                            data-retoque="A confirmar"
+                            data-profissional="Beatriz Bastos"
+                        >
+                            Escova — R$ 85,00
+                        </option>
+
+
+                        <option
+                            value="R$ 20,00"
+                            data-price="R$ 20,00"
+                            data-duration="A confirmar"
+                            data-retoque="A confirmar"
+                            data-profissional="Beatriz Bastos"
+                        >
+                            Adicional Babyliss/Chapinha — R$ 20,00
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="btn-agendar"
+                >
+                    Agende já
+                </button>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- TRATAMENTOS -->
+
+        <div class="procedimento">
+
+            <div class="imagem-procedimento">
+
+                <img
+                    src="fotos/hidratação.jpg"
+                    alt="Tratamentos capilares"
+                >
+
+            </div>
+
+
+            <div class="conteudo-procedimento">
+
+                <h3>
+                    Tratamentos
+                </h3>
+
+
+                <p>
+                    Cuidados especiais para recuperar,
+                    fortalecer e manter os cabelos
+                    saudáveis e bonitos.
+                </p>
+
+
+                <div class="opcoes-valor">
+
+                    <label>
+                        Opções:
+                    </label>
+
+
+                    <select
+                        class="variant-select"
+                        id="tratamentos-variantes"
+                    >
+
+                        <option
+                            value="R$ 149,00"
+                            data-price="R$ 149,00"
+                            data-duration="A confirmar"
+                            data-retoque="A confirmar"
+                            data-profissional="Beatriz Bastos"
+                        >
+                            Hidratação Wella — R$ 149,00
+                        </option>
+
+
+                        <option
+                            value="R$ 169,00"
+                            data-price="R$ 169,00"
+                            data-duration="A confirmar"
+                            data-retoque="A confirmar"
+                            data-profissional="Beatriz Bastos"
+                        >
+                            Nutrição Wella — R$ 169,00
+                        </option>
+
+
+                        <option
+                            value="R$ 189,00"
+                            data-price="R$ 189,00"
+                            data-duration="A confirmar"
+                            data-retoque="A confirmar"
+                            data-profissional="Beatriz Bastos"
+                        >
+                            Reconstrução Wella — R$ 189,00
+                        </option>
+
+
+                        <option
+                            value="R$ 189,00"
+                            data-price="R$ 189,00"
+                            data-duration="A confirmar"
+                            data-retoque="A confirmar"
+                            data-profissional="Beatriz Bastos"
+                        >
+                            Metal Detox L'Oréal — R$ 189,00
+                        </option>
+
+
+                        <option
+                            value="R$ 189,00"
+                            data-price="R$ 189,00"
+                            data-duration="A confirmar"
+                            data-retoque="A confirmar"
+                            data-profissional="Beatriz Bastos"
+                        >
+                            Reconstrução L'Oréal — R$ 189,00
+                        </option>
+
+
+                        <option
+                            value="R$ 99,00"
+                            data-price="R$ 99,00"
+                            data-duration="A confirmar"
+                            data-retoque="A confirmar"
+                            data-profissional="Beatriz Bastos"
+                        >
+                            Adicional Metal Detox — R$ 99,00
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="btn-agendar"
+                >
+                    Agende já
+                </button>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- COLORAÇÃO -->
+
+        <div class="procedimento">
+
+            <div class="imagem-procedimento">
+
+                <img
+                    src="fotos/coloracao.jpg"
+                    alt="Coloração"
+                >
+
+            </div>
+
+
+            <div class="conteudo-procedimento">
+
+                <h3>
+                    Coloração
+                </h3>
+
+
+                <p>
+                    Transforme a cor dos seus cabelos
+                    com técnicas pensadas para um
+                    resultado bonito e personalizado.
+                </p>
+
+
+                <div class="opcoes-valor">
+
+                    <label>
+                        Opções:
+                    </label>
+
+
+                    <select
+                        class="variant-select"
+                        id="coloracao-variantes"
+                    >
+
+                        <option
+                            value="R$ 169,00"
+                            data-price="R$ 169,00"
+                            data-duration="A confirmar"
+                            data-retoque="A confirmar"
+                            data-profissional="Beatriz Bastos"
+                        >
+                            Retoque de raiz — R$ 169,00
+                        </option>
+
+
+                        <option
+                            value="A partir de R$ 120,00"
+                            data-price="A partir de R$ 120,00"
+                            data-duration="A confirmar"
+                            data-retoque="A confirmar"
+                            data-profissional="Beatriz Bastos"
+                        >
+                            Tonalização — a partir de R$ 120,00
+                        </option>
+
+
+                        <option
+                            value="R$ 120,00"
+                            data-price="R$ 120,00"
+                            data-duration="A confirmar"
+                            data-retoque="A confirmar"
+                            data-profissional="Beatriz Bastos"
+                        >
+                            Esfumado de raiz — R$ 120,00
+                        </option>
+
+
+                        <option
+                            value="A partir de R$ 250,00"
+                            data-price="A partir de R$ 250,00"
+                            data-duration="A confirmar"
+                            data-retoque="A confirmar"
+                            data-profissional="Beatriz Bastos"
+                        >
+                            Coloração — a partir de R$ 250,00
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="btn-agendar"
+                >
+                    Agende já
+                </button>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- MECHAS -->
+
+        <div class="procedimento">
+
+            <div class="imagem-procedimento">
+
+                <img
+                    src="fotos/mechas.jpg"
+                    alt="Mechas"
+                >
+
+            </div>
+
+
+            <div class="conteudo-procedimento">
+
+                <h3>
+                    Mechas
+                </h3>
+
+
+                <p>
+                    Ilumine seus cabelos com mechas
+                    personalizadas para valorizar
+                    seu visual.
+                </p>
+
+
+                <div class="opcoes-valor">
+
+                    <label>
+                        Opções:
+                    </label>
+
+
+                    <select
+                        class="variant-select"
+                        id="mechas-variantes"
+                    >
+
+                        <option
+                            value="A partir de R$ 599,00"
+                            data-price="A partir de R$ 599,00"
+                            data-duration="A confirmar"
+                            data-retoque="A confirmar"
+                            data-profissional="Beatriz Bastos"
+                        >
+                            Mechas — a partir de R$ 599,00
+                        </option>
+
+
+                        <option
+                            value="A partir de R$ 450,00"
+                            data-price="A partir de R$ 450,00"
+                            data-duration="A confirmar"
+                            data-retoque="A confirmar"
+                            data-profissional="Beatriz Bastos"
+                        >
+                            Moreno iluminado — a partir de R$ 450,00
+                        </option>
+
+
+                        <option
+                            value="R$ 300,00"
+                            data-price="R$ 300,00"
+                            data-duration="A confirmar"
+                            data-retoque="A confirmar"
+                            data-profissional="Beatriz Bastos"
+                        >
+                            Mechas contorno/Color Block — R$ 300,00
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="btn-agendar"
+                >
+                    Agende já
+                </button>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ALISAMENTOS -->
+
+        <div class="procedimento">
+
+            <div class="imagem-procedimento">
+
+                <img
+                    src="fotos/alisamento.webp"
+                    alt="Alisamentos"
+                >
+
+            </div>
+
+
+            <div class="conteudo-procedimento">
+
+                <h3>
+                    Alisamentos
+                </h3>
+
+
+                <p>
+                    Procedimentos para transformar a
+                    textura dos fios e proporcionar um
+                    acabamento alinhado.
+                </p>
+
+
+                <div class="opcoes-valor">
+
+                    <label>
+                        Opções:
+                    </label>
+
+
+                    <select
+                        class="variant-select"
+                        id="alisamentos-variantes"
+                    >
+
+                        <option
+                            value="A partir de R$ 299,00"
+                            data-price="A partir de R$ 299,00"
+                            data-duration="A confirmar"
+                            data-retoque="A confirmar"
+                            data-profissional="Beatriz Bastos"
+                        >
+                            Progressiva — a partir de R$ 299,00
+                        </option>
+
+
+                        <option
+                            value="A partir de R$ 290,00"
+                            data-price="A partir de R$ 290,00"
+                            data-duration="A confirmar"
+                            data-retoque="A confirmar"
+                            data-profissional="Beatriz Bastos"
+                        >
+                            Selagem — a partir de R$ 290,00
+                        </option>
+
+
+                        <option
+                            value="A partir de R$ 220,00"
+                            data-price="A partir de R$ 220,00"
+                            data-duration="A confirmar"
+                            data-retoque="A confirmar"
+                            data-profissional="Beatriz Bastos"
+                        >
+                            Botox — a partir de R$ 220,00
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="btn-agendar"
+                >
+                    Agende já
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     MAQUIAGEM
+========================================================= -->
+
+<section class="categoria">
+
+    <h2 class="titulo-categoria">
+        Maquiagem
+    </h2>
+
+
+    <div class="container-procedimentos">
+
+
+        <!-- MAQUIAGEM SOCIAL -->
+
+        <div class="procedimento">
+
+            <div class="imagem-procedimento">
+
+                <img
+                    src="fotos/makesocial.jpg"
+                    alt="Maquiagem Social"
+                >
+
+            </div>
+
+
+            <div class="conteudo-procedimento">
+
+                <h3>
+                    Maquiagem Social
+                </h3>
+
+
+                <p>
+                    Produção personalizada para eventos
+                    e ocasiões especiais, valorizando
+                    seus traços e seu estilo.
+                </p>
+
+
+                <div class="opcoes-valor">
+
+                    <label>
+                        Opções:
+                    </label>
+
+
+                    <select
+                        class="variant-select"
+                        id="maquiagem-social-variantes"
+                    >
+
+                        <option
+                            value="R$ 230,00"
+                            data-price="R$ 230,00"
+                            data-duration="A confirmar"
+                            data-retoque="A confirmar"
+                            data-profissional="Beatriz Bastos"
+                        >
+                            Maquiagem Social — R$ 230,00
+                        </option>
+
+
+                        <option
+                            value="R$ 230,00"
+                            data-price="R$ 230,00"
+                            data-duration="A confirmar"
+                            data-retoque="A confirmar"
+                            data-profissional="Beatriz Bastos"
+                        >
+                            Penteado Social — R$ 230,00
+                        </option>
+
+
+                        <option
+                            value="R$ 440,00"
+                            data-price="R$ 440,00"
+                            data-duration="A confirmar"
+                            data-retoque="A confirmar"
+                            data-profissional="Beatriz Bastos"
+                        >
+                            Pacote Social — R$ 440,00
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="btn-agendar"
+                >
+                    Agende já
+                </button>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- MAQUIAGEM INFANTIL -->
+
+        <div class="procedimento">
+
+            <div class="imagem-procedimento">
+
+                <img
+                    src="fotos/makeinfantil.jpg"
+                    alt="Maquiagem Infantil"
+                >
+
+            </div>
+
+
+            <div class="conteudo-procedimento">
+
+                <h3>
+                    Maquiagem Infantil
+                </h3>
+
+
+                <p>
+                    Maquiagem delicada e adequada para
+                    crianças em ocasiões especiais
+                    e eventos.
+                </p>
+
+
+                <div class="opcoes-valor">
+
+                    <label>
+                        Opções:
+                    </label>
+
+
+                    <select
+                        class="variant-select"
+                        id="maquiagem-infantil-variantes"
+                    >
+
+                        <option
+                            value="R$ 180,00"
+                            data-price="R$ 180,00"
+                            data-duration="A confirmar"
+                            data-retoque="A confirmar"
+                            data-profissional="Beatriz Bastos"
+                        >
+                            Maquiagem Infantil — R$ 180,00
+                        </option>
+
+
+                        <option
+                            value="R$ 180,00"
+                            data-price="R$ 180,00"
+                            data-duration="A confirmar"
+                            data-retoque="A confirmar"
+                            data-profissional="Beatriz Bastos"
+                        >
+                            Penteado Infantil — R$ 180,00
+                        </option>
+
+
+                        <option
+                            value="R$ 340,00"
+                            data-price="R$ 340,00"
+                            data-duration="A confirmar"
+                            data-retoque="A confirmar"
+                            data-profissional="Beatriz Bastos"
+                        >
+                            Pacote Infantil — R$ 340,00
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="btn-agendar"
+                >
+                    Agende já
+                </button>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- NOIVAS -->
+
+        <div class="procedimento">
+
+            <div class="imagem-procedimento">
+
+                <img
+                    src="fotos/makenoiva.jpg"
+                    alt="Maquiagem para Noivas"
+                >
+
+            </div>
+
+
+            <div class="conteudo-procedimento">
+
+                <h3>
+                    Noivas
+                </h3>
+
+
+                <p>
+                    Produção especial para noivas,
+                    pensada para tornar seu grande
+                    dia ainda mais inesquecível.
+                </p>
+
+
+                <div class="opcoes-valor">
+
+                    <label>
+                        Opções:
+                    </label>
+
+
+                    <select
+                        class="variant-select"
+                        id="noivas-variantes"
+                    >
+
+                        <option
+                            value="R$ 1.250,00"
+                            data-price="R$ 1.250,00"
+                            data-duration="A confirmar"
+                            data-retoque="A confirmar"
+                            data-profissional="Beatriz Bastos"
+                        >
+                            Pacote Noiva — R$ 1.250,00
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="btn-agendar"
+                >
+                    Agende já
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     SEM RESULTADOS
+========================================================= -->
+
+<div
+    id="mensagem-sem-resultados"
+    class="nenhum-produto"
+    style="display: none;"
+>
+
+    <i class="fa-solid fa-magnifying-glass"></i>
+
+    <h3>
+        Nenhum produto encontrado
+    </h3>
+
+    <p>
+        Tente pesquisar por outro nome, categoria ou descrição.
+    </p>
+
+</div>
+
+
+
+ <!-- ================= FOOTER ================= -->
+
+<footer class="footer">
+
+    <div class="footer-grid">
+
+
+        <!-- Informações principais da marca. -->
+        <div class="footer-box brand">
+
+            <!-- Logo. -->
+            <a href="#home" class="logo">
+                Bella<span>.</span>
+            </a>
+
+            <!-- Descrição da empresa. -->
+            <p>
+                Beleza, cuidado e bem-estar em um só lugar.
+                Um espaço pensado especialmente para você.
+            </p>
+
+            <!-- Links das redes sociais. -->
+            <div class="social">
+
+                <a href="#">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+
+                <a href="#">
+                    <i class="fa-brands fa-whatsapp"></i>
+                </a>
+
+                <a href="#">
+                    <i class="fa-brands fa-facebook-f"></i>
+                </a>
+
+                <a href="#">
+                    <i class="fa-brands fa-tiktok"></i>
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- Links principais do site. -->
+        <div class="footer-box">
+
+            <h3>Menu</h3>
+
+            <a href="index.html#home">Início</a>
+            <a href="index.html#about">Sobre nós</a>
+            <a href="index.html#services">Serviços</a>
+            <a href="index.html#contact">Contato</a>
+
+        </div>
+
+
+        <!-- Informações de contato. -->
+        <div class="footer-box">
+
+            <h3>Contato</h3>
+
+            <p>
+                <i class="fa-solid fa-phone"></i>
+                (11) 99999-9999
+            </p>
+
+            <p>
+                <i class="fa-brands fa-whatsapp"></i>
+                (11) 99999-9999
+            </p>
+
+            <p>
+                <i class="fa-solid fa-envelope"></i>
+                contato@maestetica.com
+            </p>
+
+            <p>
+                <i class="fa-solid fa-location-dot"></i>
+                São Paulo - SP
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- Copyright e crédito do site. -->
+    <div class="credit">
+
+        <p>
+            © 2026 <span>Bella Gestão</span>.
+            Todos os direitos reservados.
+        </p>
+
+        <p>
+            Feito com <i class="fa-solid fa-heart"></i>
+        </p>
+
+    </div>
+
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="javascript/supabase-config.js"></script>
+<script src="javascript/global-header.js"></script>
+
+
+<script src="javascript/procedimentos.js"></script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,306 @@
+/* ==================================================
+   CONTEÚDO
+================================================== */
+
+.edit-profile-content {
+
+    width: 100%;
+
+    max-width: 60rem;
+
+    margin: 0 auto;
+
+    padding: 13rem 4rem 6rem;
+}
+
+
+/* ==================================================
+   VOLTAR
+================================================== */
+
+.back-link {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: .8rem;
+
+    margin-bottom: 2rem;
+
+    color: var(--gray);
+
+    font-size: 1.4rem;
+
+    transition: .3s;
+}
+
+.back-link:hover {
+    color: var(--pink);
+}
+
+
+/* ==================================================
+   CARD
+================================================== */
+
+.edit-profile-card {
+
+    width: 100%;
+
+    background: var(--white);
+
+    border: 1px solid var(--border);
+
+    border-radius: 2.2rem;
+
+    padding: 3.5rem;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 2.2rem;
+
+    box-shadow:
+        0 .8rem 2.5rem rgba(70, 40, 50, .06);
+}
+
+.edit-profile-card h1 {
+
+    font-size: 2.6rem;
+
+    color: var(--dark);
+}
+
+.edit-profile-card .subtitle {
+
+    margin-top: -1.4rem;
+
+    font-size: 1.4rem;
+
+    color: var(--gray);
+}
+
+
+/* ==================================================
+   FOTO
+================================================== */
+
+.edit-photo-wrapper {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 1.2rem;
+
+    margin: .5rem 0 1rem;
+}
+
+.photo-hint {
+
+    font-size: 1.3rem;
+
+    color: var(--gray);
+}
+
+
+/* ==================================================
+   CAMPOS
+================================================== */
+
+.field-group {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: .7rem;
+}
+
+.field-group label {
+
+    font-size: 1.4rem;
+
+    font-weight: 600;
+
+    color: var(--dark);
+}
+
+.field-group input {
+
+    padding: 1.2rem 1.5rem;
+
+    border: 1px solid var(--border);
+
+    border-radius: 1rem;
+
+    background: var(--cream);
+
+    color: var(--dark);
+
+    font-size: 1.5rem;
+
+    outline: none;
+
+    transition: .3s;
+}
+
+.field-group input:focus {
+
+    border-color: var(--pink);
+
+    background: var(--white);
+}
+
+
+/* ==================================================
+   AÇÕES
+================================================== */
+
+.edit-actions {
+
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 1.5rem;
+
+    margin-top: 1rem;
+}
+
+.cancel-button {
+
+    display: flex;
+
+    align-items: center;
+
+    padding: 1.2rem 1.8rem;
+
+    border: 1px solid var(--border);
+
+    border-radius: 1rem;
+
+    background: var(--white);
+
+    color: var(--gray);
+
+    font-size: 1.4rem;
+
+    cursor: pointer;
+
+    transition: .3s;
+}
+
+.cancel-button:hover {
+
+    background: var(--nude);
+
+    color: var(--dark);
+}
+
+.save-button {
+
+    display: flex;
+
+    align-items: center;
+
+    padding: 1.2rem 2rem;
+
+    border: none;
+
+    border-radius: 1rem;
+
+    background: var(--pink);
+
+    color: var(--white);
+
+    font-size: 1.4rem;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: .3s;
+}
+
+.save-button:hover {
+
+    background: var(--dark-pink);
+
+    transform: translateY(-.2rem);
+}
+
+
+/* ==================================================
+   CELULAR
+================================================== */
+
+@media (max-width: 768px) {
+
+    .edit-profile-content {
+
+        padding: 10rem 1.5rem 4rem;
+    }
+
+    .edit-profile-card {
+
+        padding: 2.5rem;
+    }
+
+    .edit-actions {
+
+        flex-direction: column-reverse;
+    }
+
+    .cancel-button,
+    .save-button {
+
+        justify-content: center;
+    }
+
+}
+
+
+
+
+
+
+/* Estilo para cobrir a tela e flutuar o modal */
+.modal-galeria {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Fundo escuro transparente */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* Caixa interna do modal */
+.modal-content {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+/* Grade onde as imagens do Supabase vão aparecer */
+.grid-avatares {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    margin: 20px 0;
+    max-height: 250px;
+    overflow-y: auto;
+}

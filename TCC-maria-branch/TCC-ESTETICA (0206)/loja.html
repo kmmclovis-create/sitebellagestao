@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Loja - Bella</title>
+
+    <!-- FONT AWESOME -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/loja.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================================
+         HEADER
+    ========================================================= -->
+
+    <header class="header" id="header">
+
+        <!-- LOGO -->
+        <a href="index.html#home" class="logo">
+            Bella<span>.</span>
+        </a>
+
+
+        <!-- MENU MOBILE -->
+        <input
+            type="checkbox"
+            id="menu-toggle"
+        >
+
+        <label
+            for="menu-toggle"
+            class="menu-icon"
+        >
+            <i class="fa-solid fa-bars"></i>
+        </label>
+
+
+        <!-- MENU -->
+        <nav class="navbar">
+
+            <a href="index.html#home">
+                Home
+            </a>
+
+            <a href="procedimentos.html">
+                Procedimentos
+            </a>
+
+            <a href="agenda.html">
+                Agendamentos
+            </a>
+
+            <a href="loja.html" class="active">
+                Loja
+            </a>
+
+            <a href="index.html#about">
+                Sobre Nós
+            </a>
+
+            <a href="index.html#contact">
+                Contato
+            </a>
+
+        </nav>
+
+
+        <!-- =====================================================
+             ÍCONES
+        ====================================================== -->
+
+        <div class="header-icons">
+
+            <!-- PERFIL -->
+
+           <a href="perfil.html" class="user-icon" id="linkPerfilHeader">
+    <img src="icons/userpadrao.jpg" alt="Perfil" id="fotoHeader" style="width: 35px; height: 35px; border-radius: 50%; object-fit: cover;">
+</a>
+
+
+            <!-- CARRINHO -->
+
+            <a
+                href="carrinho.html"
+                title="Carrinho"
+                class="cart-icon"
+            >
+
+                <i class="fa-solid fa-cart-shopping"></i>
+
+                <span id="cartCount">
+                    0
+                </span>
+
+            </a>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =========================================================
+         HERO
+    ========================================================= -->
+
+    <section class="loja-hero">
+
+        <div class="loja-intro">
+
+            <span class="section-label">
+                BELLA
+            </span>
+
+            <h1>
+                Nossa
+                <span>Loja</span>
+            </h1>
+
+            <p>
+                Encontre produtos selecionados para
+                cuidar da sua beleza e bem-estar.
+            </p>
+
+        </div>
+
+
+        <!-- =====================================================
+             PESQUISA
+        ====================================================== -->
+
+        <div class="search-container">
+
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+
+            <input
+                type="text"
+                id="query"
+                placeholder="Pesquisar produto..."
+                autocomplete="off"
+            >
+
+
+            <button
+                type="button"
+                id="clearBtn"
+                title="Limpar pesquisa"
+            >
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================================
+         LOJA
+    ========================================================= -->
+
+    <main class="loja">
+
+
+        <h2 class="titulo-categoria">
+            Produtos em destaque
+        </h2>
+
+
+
+        <!-- =====================================================
+             PRODUTOS
+        ====================================================== -->
+
+        <div
+            class="produtos-container"
+            id="productsContainer"
+        >
+
+
+            <!-- =================================================
+                 PRODUTO 1
+            ================================================== -->
+
+            <article class="produto">
+
+                <div class="imagem-produto">
+
+                    <img
+                        src="fotos/combopantene.webp"
+                        alt="Kit Pantene"
+                    >
+
+                    <span class="produto-tag">
+                        Destaque
+                    </span>
+
+                </div>
+
+
+                <div class="conteudo-produto">
+
+                    <span class="categoria-produto">
+                        Cabelos
+                    </span>
+
+                    <!--Nome do produto-->
+                    <h3>
+                        Kit Pantene Colageno 1 Sh 510ml + 1 Cond 510ml + Masc 550ml
+                    </h3>
+
+
+                    <p>
+                        Kit de produtos Pantene para cuidados capilares,
+                        incluindo shampoo, condicionador e máscara.
+                    </p>
+
+
+                    <div class="produto-bottom">
+
+                        <strong>
+                            R$ 131,00
+
+                        </strong>
+
+
+                        <button
+                            type="button"
+                            class="btn-carrinho"
+                            data-name="Kit Pantene Colageno 1 Sh 510ml + 1 Cond 510ml + Masc 550ml"
+                            data-price="131.00"
+                        >
+
+                            <i class="fa-solid fa-cart-plus"></i>
+
+                            Comprar
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- =================================================
+                 PRODUTO 2
+            ================================================== -->
+
+            <article class="produto">
+
+                <div class="imagem-produto">
+
+                    <img
+                        src="fotos/Combosiage.webp"
+                        alt="Combo Siàge"
+                    >
+
+                </div>
+
+
+                <div class="conteudo-produto">
+
+                    <span class="categoria-produto">
+                        Cabelos
+                    </span>
+
+                    <!--Nome do produto-->
+                    <h3>
+                        Combo Siàge Nutri Acid.Complex
+                    </h3>
+
+
+                    <p>
+                        Kit de produtos Siagé para cuidados capilares,
+                        incluindo shampoo, condicionador e máscara.
+                    </p>
+
+
+                    <div class="produto-bottom">
+
+                        <strong>
+                            R$ 201,70
+                        </strong>
+
+
+                        <button
+                            type="button"
+                            class="btn-carrinho"
+                            data-name="Combo Siagé Nutri Acid.Complex"
+                            data-price="201.70"
+                        >
+
+                            <i class="fa-solid fa-cart-plus"></i>
+
+                            Comprar
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- =================================================
+                 PRODUTO 3
+            ================================================== -->
+
+            <article class="produto">
+
+                <div class="imagem-produto">
+
+                    <img
+                        src="fotos/comboglowshine.webp"
+                        alt="Kit Glow Shine"
+                    >
+
+                </div>
+
+
+                <div class="conteudo-produto">
+
+                    <span class="categoria-produto">
+                        Cabelos
+                    </span>
+
+
+                    <h3>
+                      Kit Glow Shine Completo  
+                    </h3>
+
+
+                    <p>
+                        Kit de produtos Glow Shine para cuidados capilares,
+                        incluindo shampoo, condicionador, máscara e fluido ativador.
+                    </p>
+
+
+                    <div class="produto-bottom">
+
+                        <strong>
+                            R$ 196,24
+                        </strong>
+
+
+                        <button
+                            type="button"
+                            class="btn-carrinho"
+                            data-name="Kit Glow Shine Completo"
+                            data-price="196.24"
+                        >
+
+                            <i class="fa-solid fa-cart-plus"></i>
+
+                            Comprar
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- =================================================
+                 PRODUTO 4
+            ================================================== -->
+
+            <article class="produto">
+
+                <div class="imagem-produto">
+
+                    <img
+                        src="fotos/Kitprincipia.webp"
+                        alt="Kit Essencial Principia"
+                    >
+
+                </div>
+
+
+                <div class="conteudo-produto">
+
+                    <span class="categoria-produto">
+                        Skincare
+                    </span>
+
+
+                    <h3>
+                        Kit Essencial Rn-0,3
+                    </h3>
+
+
+                    <p>
+                        Kit de produtos para cuidados faciais,
+                        incluindo creme, sérum e protetor solar.
+                    </p>
+
+
+                    <div class="produto-bottom">
+
+                        <strong>
+                            R$ 188,80
+                        </strong>
+
+
+                        <button
+                            type="button"
+                            class="btn-carrinho"
+                            data-name="Kit Essencial Rn-0,3"
+                            data-price="188.80"
+                        >
+
+                            <i class="fa-solid fa-cart-plus"></i>
+
+                            Comprar
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- =================================================
+                 PRODUTO 5
+            ================================================== -->
+
+            <article class="produto">
+
+                <div class="imagem-produto">
+
+                    <img
+                        src="fotos/serumnivea.webp"
+                        alt="Serum Nivea"
+                    >
+
+                </div>
+
+
+                <div class="conteudo-produto">
+
+                    <span class="categoria-produto">
+                        Skincare
+                    </span>
+
+
+                    <h3>
+                        Serum Facial Nivea Luminous 630 Skin Glow 15Ml
+                    </h3>
+
+
+                    <p>
+                        Serum facial da Nivea para cuidados com a pele, proporcionando luminosidade e hidratação.
+                    </p>
+
+
+                    <div class="produto-bottom">
+
+                        <strong>
+                            R$ 54,38
+                        </strong>
+
+
+                        <button
+                            type="button"
+                            class="btn-carrinho"
+                            data-name="Serum Facial Nivea Luminous 630 Skin Glow 15Ml"
+                            data-price="54.38"
+                        >
+
+                            <i class="fa-solid fa-cart-plus"></i>
+
+                            Comprar
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- =================================================
+                 PRODUTO 6
+            ================================================== -->
+
+            <article class="produto">
+
+                <div class="imagem-produto">
+
+                    <img
+                        src="fotos/acidosoftbeauty.webp"
+                        alt="Kit Soft Beauty"
+                    >
+
+                </div>
+
+
+                <div class="conteudo-produto">
+
+                    <span class="categoria-produto">
+                        Skincare
+                    </span>
+
+
+                    <h3>
+                        Kit Skin Care Ácido Hyalurônico + Vitamina C Soft Beauty
+                    </h3>
+
+
+                    <p>
+                        Kit de produtos Soft Beauty para cuidados faciais,
+                        incluindo ácido hialurônico e vitamina C.
+                    </p>
+
+
+                    <div class="produto-bottom">
+
+                        <strong>
+                            R$ 109,99
+                        </strong>
+
+
+                        <button
+                            type="button"
+                            class="btn-carrinho"
+                            data-name="Kit Skin Care Ácido Hyalurônico + Vitamina C Soft Beauty"
+                            data-price="109.99"
+                        >
+
+                            <i class="fa-solid fa-cart-plus"></i>
+
+                            Comprar
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+        </div>
+
+
+
+        <!-- =====================================================
+             MENSAGEM SEM RESULTADOS
+        ====================================================== -->
+
+        <div
+            id="mensagem-sem-resultados"
+            class="nenhum-produto"
+        >
+
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+            <h3>
+                Nenhum produto encontrado
+            </h3>
+
+            <p>
+                Tente pesquisar por outro nome,
+                categoria ou descrição.
+            </p>
+
+        </div>
+
+    </main>
+
+
+
+    <!-- =========================================================
+         FOOTER
+    ========================================================= -->
+
+    <footer class="footer">
+
+        <div class="footer-grid">
+
+
+            <!-- MARCA -->
+
+            <div class="footer-box brand">
+
+                <a
+                    href="index.html#home"
+                    class="logo"
+                >
+                    Bella<span>.</span>
+                </a>
+
+
+                <p>
+                    Beleza, cuidado e bem-estar
+                    em um só lugar.
+                </p>
+
+
+                <div class="social">
+
+                    <a href="#">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+
+                    <a href="#">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </a>
+
+                    <a href="#">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </a>
+
+                    <a href="#">
+                        <i class="fa-brands fa-tiktok"></i>
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- MENU -->
+
+            <div class="footer-box">
+
+                <h3>
+                    Menu
+                </h3>
+
+                <a href="index.html#home">
+                    Início
+                </a>
+
+                <a href="index.html#about">
+                    Sobre nós
+                </a>
+
+                <a href="procedimentos.html">
+                    Procedimentos
+                </a>
+
+                <a href="agendamento.html">
+                    Agendamentos
+                </a>
+
+            </div>
+
+
+            <!-- LOJA -->
+
+            <div class="footer-box">
+
+                <h3>
+                    Loja
+                </h3>
+
+                <a href="loja.html">
+                    Produtos
+                </a>
+
+                <a href="loja.html">
+                    Ofertas
+                </a>
+
+                <a href="carrinho.html">
+                    Carrinho
+                </a>
+
+            </div>
+
+
+            <!-- CONTATO -->
+
+            <div class="footer-box">
+
+                <h3>
+                    Contato
+                </h3>
+
+                <p>
+                    <i class="fa-solid fa-phone"></i>
+                    (11) 99999-9999
+                </p>
+
+                <p>
+                    <i class="fa-brands fa-whatsapp"></i>
+                    (11) 99999-9999
+                </p>
+
+                <p>
+                    <i class="fa-solid fa-envelope"></i>
+                    contato@bella.com
+                </p>
+
+                <p>
+                    <i class="fa-solid fa-location-dot"></i>
+                    São Paulo - SP
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="credit">
+
+            <p>
+                © 2026
+                <span>Bella</span>.
+                Todos os direitos reservados.
+            </p>
+
+        </div>
+
+    </footer>
+
+
+
+    <!-- JAVASCRIPT -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="javascript/supabase-config.js"></script>
+<script src="javascript/global-header.js"></script>
+    <script src="javascript/loja.js"></script>
+
+</body>
+
+</html>
