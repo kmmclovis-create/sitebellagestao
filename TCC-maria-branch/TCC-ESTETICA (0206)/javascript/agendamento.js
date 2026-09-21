@@ -99,10 +99,10 @@ function renderizarCalendario() {
             botao.classList.add('selected');
         }
 
-     botao.addEventListener('click', async () => {
+    botao.addEventListener('click', () => {
     document.querySelectorAll('.day').forEach(d => d.classList.remove('selected'));
     botao.classList.add('selected');
-    await atualizarHorariosDisponiveis(); 
+    atualizarHorariosDisponiveis(); // <-- Adicionar aqui
 });
 
         diasEl.appendChild(botao);
@@ -128,23 +128,8 @@ function atualizarHorariosDisponiveis() {
     const mes = Number(diaSelecionado.dataset.mes);
     const dia = Number(diaSelecionado.dataset.dia);
 
-    const dataISO = `${ano}-${String(mes + 1).padStart(2, '0')}-${String(dia).padStart(2, '0')}`;
-
-    // Consulta o Supabase para buscar os horários já ocupados nesta data
-    const supabase = window.supabase;
-    let horariosOcupados = [];
-    if (supabase) {
-        const { data, error } = await supabase
-            .from('agendamentos')
-            .select('horario')
-            .eq('data', dataISO);
-
-        if (!error && data) {
-            horariosOcupados = data.map(item => item.horario ? item.horario.slice(0, 5) : "");
-        }
-    }
-
     const agora = new Date();
+    // Verifica se a data selecionada é exatamente o dia de hoje
     const ehHoje = dia === agora.getDate() && mes === agora.getMonth() && ano === agora.getFullYear();
 
     const hours = document.querySelectorAll(".hour");
@@ -159,31 +144,19 @@ function atualizarHorariosDisponiveis() {
         hour.style.pointerEvents = 'auto';
         hour.style.opacity = '1';
 
-        let deveBloquear = false;
-
-        // 1. Verifica se o horário já passou (caso seja hoje)
         if (ehHoje) {
             const horaAtual = agora.getHours();
             const minutoAtual = agora.getMinutes();
+
+            // Se o horário do slot já passou em relação à hora atual do sistema
             if (horaSlot < horaAtual || (horaSlot === horaAtual && minutoSlot <= minutoAtual)) {
-                deveBloquear = true;
+                hour.classList.add('disabled');
+                hour.style.pointerEvents = 'none'; // Impede o clique
+                hour.style.opacity = '0.4';        // Deixa visualmente desativado
             }
-        }
-
-        // 2. Verifica se o horário já está ocupado no banco de dados
-        if (horariosOcupados.includes(textoHora)) {
-            deveBloquear = true;
-        }
-
-        // Aplica o bloqueio se necessário
-        if (deveBloquear) {
-            hour.classList.add('disabled');
-            hour.style.pointerEvents = 'none'; 
-            hour.style.opacity = '0.4';        
         }
     });
 }
-
 // Configuração de clique nos horários
 const hours = document.querySelectorAll(".hour");
 hours.forEach(hour => {
