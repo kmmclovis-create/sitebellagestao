@@ -99,10 +99,10 @@ function renderizarCalendario() {
             botao.classList.add('selected');
         }
 
-       botao.addEventListener('click', () => {
+     botao.addEventListener('click', async () => {
     document.querySelectorAll('.day').forEach(d => d.classList.remove('selected'));
     botao.classList.add('selected');
-    atualizarHorariosDisponiveis(); // <-- Adicionar aqui
+    await atualizarHorariosDisponiveis(); 
 });
 
         diasEl.appendChild(botao);
