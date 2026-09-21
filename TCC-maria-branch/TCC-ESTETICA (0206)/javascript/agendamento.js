@@ -99,10 +99,11 @@ function renderizarCalendario() {
             botao.classList.add('selected');
         }
 
-        botao.addEventListener('click', () => {
-            document.querySelectorAll('.day').forEach(d => d.classList.remove('selected'));
-            botao.classList.add('selected');
-        });
+       botao.addEventListener('click', () => {
+    document.querySelectorAll('.day').forEach(d => d.classList.remove('selected'));
+    botao.classList.add('selected');
+    atualizarHorariosDisponiveis(); // <-- Adicionar aqui
+});
 
         diasEl.appendChild(botao);
     }
@@ -118,10 +119,50 @@ document.getElementById('btnMesProximo')?.addEventListener('click', () => mudarM
 
 renderizarCalendario();
 
-// 3. Seleção de horário
+// 3. Seleção e Validação de Horários (Bloqueia horários passados se for hoje)
+function atualizarHorariosDisponiveis() {
+    const diaSelecionado = document.querySelector('.day.selected');
+    if (!diaSelecionado) return;
+
+    const ano = Number(diaSelecionado.dataset.ano);
+    const mes = Number(diaSelecionado.dataset.mes);
+    const dia = Number(diaSelecionado.dataset.dia);
+
+    const agora = new Date();
+    // Verifica se a data selecionada é exatamente o dia de hoje
+    const ehHoje = dia === agora.getDate() && mes === agora.getMonth() && ano === agora.getFullYear();
+
+    const hours = document.querySelectorAll(".hour");
+    hours.forEach(hour => {
+        const textoHora = hour.textContent.trim(); // Ex: "14:30"
+        const [hStr, mStr] = textoHora.split(':');
+        const horaSlot = Number(hStr);
+        const minutoSlot = Number(mStr);
+
+        // Reseta o estado visual de cada horário
+        hour.classList.remove('disabled', 'selected');
+        hour.style.pointerEvents = 'auto';
+        hour.style.opacity = '1';
+
+        if (ehHoje) {
+            const horaAtual = agora.getHours();
+            const minutoAtual = agora.getMinutes();
+
+            // Se o horário do slot já passou em relação à hora atual do sistema
+            if (horaSlot < horaAtual || (horaSlot === horaAtual && minutoSlot <= minutoAtual)) {
+                hour.classList.add('disabled');
+                hour.style.pointerEvents = 'none'; // Impede o clique
+                hour.style.opacity = '0.4';        // Deixa visualmente desativado
+            }
+        }
+    });
+}
+
+// Configuração de clique nos horários
 const hours = document.querySelectorAll(".hour");
 hours.forEach(hour => {
     hour.addEventListener("click", () => {
+        if (hour.classList.contains('disabled')) return;
         hours.forEach(h => h.classList.remove("selected"));
         hour.classList.add("selected");
     });
