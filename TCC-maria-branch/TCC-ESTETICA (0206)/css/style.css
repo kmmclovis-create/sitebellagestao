@@ -1200,40 +1200,22 @@ Rodapé com informações, links e redes sociais.
   color: var(--pink);
 }
 
-.cart-icon #cartCount {
-
-    position: absolute;
-
-    top: -.4rem;
-
-    right: -.4rem;
-
-    min-width: 1.8rem;
-
-    height: 1.8rem;
-
-    padding: .2rem .4rem;
-
+.cart-icon {
+    position: relative; /* Essencial para prender o contador dentro do ícone */
+    width: 3.8rem;
+    height: 3.8rem;
     display: flex;
-
     align-items: center;
-
     justify-content: center;
-
-    border:
-        2px solid
-        #fff;
-
     border-radius: 50%;
+    background: var(--light-pink);
+    color: var(--pink);
+    font-size: 1.5rem;
+    transition: .3s;
+}
 
-    background: var(--dark-pink);
-
+.cart-icon:hover {
+    background: var(--pink);
     color: #fff;
-
-    font-size: 1rem;
-
-    font-weight: 700;
-
-    line-height: 1;
-
+    transform: translateY(-.2rem);
 }
