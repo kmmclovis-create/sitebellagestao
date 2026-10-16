@@ -1200,76 +1200,25 @@ Rodapé com informações, links e redes sociais.
   color: var(--pink);
 }
 
+.cart-icon {
+    position: relative; /* Mantém o pai como referência */
+}
+
 .cart-icon #cartCount {
-
-
-
-    position: relative;
-
-
-
-    top: -.4rem;
-
-
-
-    right: -.4rem;
-
-
-
+    position: absolute; /* Fixa o número em relação ao carrinho */
+    top: -0.4rem;
+    right: -0.4rem;
     min-width: 1.8rem;
-
-
-
     height: 1.8rem;
-
-
-
     padding: .2rem .4rem;
-
-
-
     display: flex;
-
-
-
     align-items: center;
-
-
-
     justify-content: center;
-
-
-
-    border:
-
-        2px solid
-
-        #fff;
-
-
-
+    border: 2px solid #fff;
     border-radius: 50%;
-
-
-
     background: var(--dark-pink);
-
-
-
     color: #fff;
-
-
-
     font-size: 1rem;
-
-
-
     font-weight: 700;
-
-
-
     line-height: 1;
-
-
-
 }
