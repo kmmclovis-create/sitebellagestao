@@ -515,6 +515,9 @@ button, input, select
 .modal-icon {
   font-size: 3.5rem;
   margin-bottom: 1rem;
+     background: var(--dark-pink);
+     font-weight: bold;
+  display: inline-block;
 }
 
 .modal-content h3 {
