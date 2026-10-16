@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const placeholder = document.getElementById("orderPlaceholder");
     const subtotalEl = document.getElementById("paymentSubtotal");
     const totalEl = document.getElementById("paymentTotal");
+    const form = document.querySelector(".payment-form");
 
     function formatarPreco(valor) {
         return Number(valor).toLocaleString("pt-BR", {
@@ -44,4 +45,92 @@ document.addEventListener("DOMContentLoaded", function() {
     placeholder.hidden = itensSelecionados.length > 0;
     subtotalEl.textContent = formatarPreco(subtotal);
     totalEl.textContent = formatarPreco(subtotal);
+
+    // =========================================================
+    // PROCESSAR O PAGAMENTO E SALVAR NO SUPABASE
+    // =========================================================
+    if (form) {
+        form.addEventListener("submit", async function(e) {
+            e.preventDefault();
+
+            if (itensSelecionados.length === 0) {
+                alert("Não há itens selecionados para finalizar o pedido.");
+                return;
+            }
+
+            const supabase = window.supabase;
+            if (!supabase) {
+                alert("Erro: Supabase não inicializado.");
+                return;
+            }
+
+            // Descobrir forma de pagamento selecionada
+            const metodoSelecionado = document.querySelector('input[name="metodo"]:checked');
+            const formaPagamento = metodoSelecionado ? metodoSelecionado.value : "cartao";
+
+            try {
+                // Verificar se o utilizador está logado
+                const { data: { user } } = await supabase.auth.getUser();
+
+                if (!user) {
+                    alert("Por favor, faça login para concluir o seu pedido.");
+                    window.location.href = "login.html";
+                    return;
+                }
+
+                // 1. Inserir na tabela 'pedidos'
+                const { data: pedidoCriado, error: erroPedido } = await supabase
+                    .from("pedidos")
+                    .insert([{
+                        perfil_id: user.id,
+                        valor_total: subtotal,
+                        forma_pagamento: formaPagamento,
+                        status: "concluido"
+                    }])
+                    .select()
+                    .single();
+
+                if (erroPedido) throw erroPedido;
+
+                const pedidoId = pedidoCriado.id;
+
+                // 2. Inserir os itens na tabela 'itens_pedido'
+                const itensParaInserir = itensSelecionados.map(produto => ({
+                    pedido_id: pedidoId,
+                    produto_id: produto.id || produto.produto_id,
+                    quantidade: Number(produto.quantidade) || 1,
+                    preco_unitario: Number(produto.preco) || 0
+                }));
+
+                const { error: erroItens } = await supabase
+                    .from("itens_pedido")
+                    .insert(itensParaInserir);
+
+                if (erroItens) throw erroItens;
+
+                // 3. Limpar os itens comprados do carrinho do utilizador (se estiverem na tabela 'carrinho_itens')
+                const idsProdutosComprados = itensSelecionados.map(p => p.id || p.produto_id);
+                await supabase
+                    .from("carrinho_itens")
+                    .delete()
+                    .eq("perfil_id", user.id)
+                    .in("produto_id", idsProdutosComprados);
+
+                // 4. Limpar sessionStorage
+                sessionStorage.removeItem("itensSelecionados");
+                
+                // Atualizar sessionStorage geral removendo os comprados
+                let carrinhoSessao = JSON.parse(sessionStorage.getItem("carrinho")) || [];
+                carrinhoSessao = carrinhoSessao.filter(p => !idsProdutosComprados.includes(p.id));
+                sessionStorage.setItem("carrinho", JSON.stringify(carrinhoSessao));
+
+                alert("Pedido realizado com sucesso! Obrigado pela preferência.");
+                window.location.href = "index.html";
+
+            } catch (erro) {
+                console.error("Erro ao finalizar pedido:", erro);
+                alert("Ocorreu um erro ao processar o seu pedido. Tente novamente.");
+            }
+        });
+    }
 });
