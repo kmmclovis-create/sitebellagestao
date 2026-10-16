@@ -2,6 +2,33 @@
    GLOBAL-HEADER.JS - Atualiza a foto no topo de todas as páginas
 ========================================================= */
 
+/* =========================================================
+   DOM
+========================================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        // ... (todo o código que já existe de pesquisa, selects e botões) ...
+
+        /* =================================================
+           ATUALIZAR CONTADOR DO CARRINHO AO CARREGAR
+        ================================================== */
+        atualizarContadorCarrinho();
+
+        // Ouve eventos caso o carrinho seja atualizado noutras abas/ações
+        window.addEventListener("carrinhoAtualizado", atualizarContadorCarrinho);
+
+        /*
+         * Executa a pesquisa uma vez ao
+         * carregar a página.
+         */
+        pesquisar();
+
+    }
+);
+
 document.addEventListener('DOMContentLoaded', async () => {
     const supabase = window.supabase;
     if (!supabase) return;
@@ -26,3 +53,37 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     }
 });
+
+async function atualizarContadorCarrinho() {
+    const contador = document.getElementById("cartCount");
+    if (!contador) return;
+
+    const supabase = window.supabase;
+    let quantidadeTotal = 0;
+
+    if (supabase) {
+        const { data: { user } } = await supabase.auth.getUser();
+        if (user) {
+            const { data: itens } = await supabase
+                .from("carrinho_itens")
+                .select("quantidade")
+                .eq("perfil_id", user.id);
+
+            if (itens) {
+                itens.forEach(item => {
+                    quantidadeTotal += Number(item.quantidade) || 0;
+                });
+                contador.textContent = quantidadeTotal;
+                return;
+            }
+        }
+    }
+
+    // Fallback para visitante (sessionStorage)
+    const carrinho = JSON.parse(sessionStorage.getItem("carrinho")) || [];
+    carrinho.forEach(function(produto) {
+        quantidadeTotal += Number(produto.quantidade) || 0;
+    });
+
+    contador.textContent = quantidadeTotal;
+}
