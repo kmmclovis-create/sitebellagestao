@@ -577,18 +577,16 @@ HEADER
 }
 
 
-.item img {
-
-    width: 11rem;
-
-    height: 11rem;
-
-    object-fit: cover;
-
-    border-radius: 1rem;
-
-    background: var(--nude);
-
+.item img,
+.item-image {
+    width: 11rem !important;
+    height: 11rem !important;
+    min-width: 11rem !important;
+    max-width: 11rem !important;
+    object-fit: cover !important;
+    border-radius: 1rem !important;
+    background: var(--nude) !important;
+    flex-shrink: 0 !important;
 }
 
 
