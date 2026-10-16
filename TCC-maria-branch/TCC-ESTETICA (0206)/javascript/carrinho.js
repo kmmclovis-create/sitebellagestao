@@ -1,10 +1,10 @@
 /* =========================================================
-   CARRINHO INTEGRADO COM SUPABASE
+   CARRINHO INTEGRADO COM SUPABASE E SESSIONSTORAGE
 ========================================================= */
 
 async function obterCarrinhoDoBanco() {
     const supabase = window.supabase;
-    if (!supabase) return [];
+    if (!supabase) return JSON.parse(sessionStorage.getItem("carrinho")) || [];
 
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) {
@@ -49,13 +49,13 @@ async function obterCarrinhoDoBanco() {
     }));
 }
 
-async function salvarAlteracaoItem(item) {
+async function salvarAlteracaoItem(item, carrinhoCompleto) {
     const supabase = window.supabase;
     const { data: { user } } = await supabase.auth.getUser();
 
     if (!user) {
-        // Atualiza sessionStorage se não estiver logado
-        // (A lógica de salvar o array completo continua a funcionar)
+        // Atualiza o sessionStorage se for visitante
+        sessionStorage.setItem("carrinho", JSON.stringify(carrinhoCompleto));
         return;
     }
 
@@ -70,11 +70,15 @@ async function salvarAlteracaoItem(item) {
     }
 }
 
-async function removerItemDoBanco(item) {
+async function removerItemDoBanco(item, carrinhoCompleto) {
     const supabase = window.supabase;
     const { data: { user } } = await supabase.auth.getUser();
 
-    if (!user) return;
+    if (!user) {
+        // Atualiza o sessionStorage se for visitante
+        sessionStorage.setItem("carrinho", JSON.stringify(carrinhoCompleto));
+        return;
+    }
 
     if (item.idCarrinho) {
         await supabase
@@ -128,7 +132,7 @@ async function renderizarCarrinho() {
             >
             <img
                 class="item-image"
-                src="${produto.imagem || 'fotos/mah_estetica.jpeg'}"
+                src="${produto.imagem || ''}"
                 alt="${produto.nome}"
             >
             <div class="item-info">
@@ -183,7 +187,7 @@ function adicionarEventosItens(carrinho) {
         input.addEventListener("change", async function() {
             const index = Number(input.dataset.index);
             carrinho[index].selecionado = input.checked;
-            await salvarAlteracaoItem(carrinho[index]);
+            await salvarAlteracaoItem(carrinho[index], carrinho);
             renderizarCarrinho();
         });
     });
@@ -193,7 +197,7 @@ function adicionarEventosItens(carrinho) {
         botao.addEventListener("click", async function() {
             const index = Number(botao.dataset.index);
             carrinho[index].quantidade++;
-            await salvarAlteracaoItem(carrinho[index]);
+            await salvarAlteracaoItem(carrinho[index], carrinho);
             renderizarCarrinho();
         });
     });
@@ -204,7 +208,7 @@ function adicionarEventosItens(carrinho) {
             const index = Number(botao.dataset.index);
             if (carrinho[index].quantidade > 1) {
                 carrinho[index].quantidade--;
-                await salvarAlteracaoItem(carrinho[index]);
+                await salvarAlteracaoItem(carrinho[index], carrinho);
                 renderizarCarrinho();
             }
         });
@@ -214,7 +218,8 @@ function adicionarEventosItens(carrinho) {
     document.querySelectorAll(".remove-item").forEach(function(botao) {
         botao.addEventListener("click", async function() {
             const index = Number(botao.dataset.index);
-            await removerItemDoBanco(carrinho[index]);
+            const removido = carrinho.splice(index, 1)[0];
+            await removerItemDoBanco(removido, carrinho);
             renderizarCarrinho();
         });
     });
