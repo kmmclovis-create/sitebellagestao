@@ -1,709 +1,239 @@
 /* =========================================================
-   CONFIGURAÇÃO DOS PRODUTOS
+   CARRINHO INTEGRADO COM SUPABASE
 ========================================================= */
 
-const produtosInfo = {
+async function obterCarrinhoDoBanco() {
+    const supabase = window.supabase;
+    if (!supabase) return [];
 
-    "Shampoo Profissional": {
-
-        categoria: "Cabelos",
-
-        descricao:
-            "Shampoo para limpeza e cuidado dos fios.",
-
-        imagem:
-            "fotos/shampoo.jpg"
-
-    },
-
-
-    "Máscara Capilar": {
-
-        categoria: "Cabelos",
-
-        descricao:
-            "Tratamento para hidratação e nutrição dos cabelos.",
-
-        imagem:
-            "fotos/mascara.jpg"
-
-    },
-
-
-    "Óleo Capilar": {
-
-        categoria: "Cabelos",
-
-        descricao:
-            "Óleo para proporcionar brilho, maciez e proteção.",
-
-        imagem:
-            "fotos/oleo.jpg"
-
-    },
-
-
-    "Creme Facial": {
-
-        categoria: "Skincare",
-
-        descricao:
-            "Creme para hidratação e cuidado diário da pele.",
-
-        imagem:
-            "fotos/creme.jpg"
-
-    },
-
-
-    "Protetor Solar": {
-
-        categoria: "Skincare",
-
-        descricao:
-            "Proteção diária para manter sua pele bem cuidada.",
-
-        imagem:
-            "fotos/protetor.jpg"
-
-    },
-
-
-    "Sérum Facial": {
-
-        categoria: "Skincare",
-
-        descricao:
-            "Fórmula para complementar os cuidados com a pele.",
-
-        imagem:
-            "fotos/serum.jpg"
-
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) {
+        // Se não estiver logado, lê do sessionStorage
+        return JSON.parse(sessionStorage.getItem("carrinho")) || [];
     }
 
-};
+    // Se estiver logado, busca da tabela carrinho_itens juntamente com os dados do produto
+    const { data, error } = await supabase
+        .from("carrinho_itens")
+        .select(`
+            id,
+            quantidade,
+            selecionado,
+            produto_id,
+            produtos (
+                nome,
+                preco,
+                descricao,
+                categoria,
+                imagem_url
+            )
+        `)
+        .eq("perfil_id", user.id);
 
+    if (error) {
+        console.error("Erro ao carregar carrinho:", error.message);
+        return [];
+    }
 
-
-/* =========================================================
-   OBTER CARRINHO
-========================================================= */
-
-function obterCarrinho() {
-
-    return JSON.parse(
-        sessionStorage.getItem("carrinho")
-    ) || [];
-
+    // Formata para o formato padrão usado no carrinho
+    return data.map(item => ({
+        idCarrinho: item.id,
+        id: item.produto_id,
+        nome: item.produtos.nome,
+        preco: Number(item.produtos.preco),
+        descricao: item.produtos.descricao,
+        categoria: item.produtos.categoria,
+        imagem: item.produtos.imagem_url,
+        quantidade: item.quantidade,
+        selecionado: item.selecionado
+    }));
 }
 
+async function salvarAlteracaoItem(item) {
+    const supabase = window.supabase;
+    const { data: { user } } = await supabase.auth.getUser();
 
+    if (!user) {
+        // Atualiza sessionStorage se não estiver logado
+        // (A lógica de salvar o array completo continua a funcionar)
+        return;
+    }
 
-/* =========================================================
-   SALVAR CARRINHO
-========================================================= */
-
-function salvarCarrinho(carrinho) {
-
-    sessionStorage.setItem(
-        "carrinho",
-        JSON.stringify(carrinho)
-    );
-
+    if (item.idCarrinho) {
+        await supabase
+            .from("carrinho_itens")
+            .update({
+                quantidade: item.quantidade,
+                selecionado: item.selecionado
+            })
+            .eq("id", item.idCarrinho);
+    }
 }
 
+async function removerItemDoBanco(item) {
+    const supabase = window.supabase;
+    const { data: { user } } = await supabase.auth.getUser();
 
+    if (!user) return;
 
-/* =========================================================
-   FORMATAR PREÇO
-========================================================= */
-
-function formatarPreco(valor) {
-
-    return valor.toLocaleString(
-        "pt-BR",
-        {
-            style: "currency",
-            currency: "BRL"
-        }
-    );
-
+    if (item.idCarrinho) {
+        await supabase
+            .from("carrinho_itens")
+            .delete()
+            .eq("id", item.idCarrinho);
+    }
 }
-
-
-
-/* =========================================================
-   PROTEGER HTML
-========================================================= */
-
-function escaparHTML(texto) {
-
-    return String(texto)
-
-        .replace(
-            /&/g,
-            "&amp;"
-        )
-
-        .replace(
-            /</g,
-            "&lt;"
-        )
-
-        .replace(
-            />/g,
-            "&gt;"
-        )
-
-        .replace(
-            /\"/g,
-            "&quot;"
-        )
-
-        .replace(
-            /'/g,
-            "&#039;"
-        );
-
-}
-
-
 
 /* =========================================================
    RENDERIZAR CARRINHO
 ========================================================= */
+async function renderizarCarrinho() {
+    const lista = document.getElementById("cartList");
+    const vazio = document.getElementById("emptyCart");
+    const totalProdutos = document.getElementById("total-products");
+    const total = document.getElementById("total");
+    const contador = document.getElementById("cartCount");
+    const labelItens = document.getElementById("cartItemsLabel");
+    const checkout = document.getElementById("checkoutButton");
 
-function renderizarCarrinho() {
+    if (!lista) return;
 
-    const lista =
-        document.getElementById("cartList");
-
-
-    const vazio =
-        document.getElementById("emptyCart");
-
-
-    const totalProdutos =
-        document.getElementById("total-products");
-
-
-    const total =
-        document.getElementById("total");
-
-
-    const contador =
-        document.getElementById("cartCount");
-
-
-    const labelItens =
-        document.getElementById("cartItemsLabel");
-
-
-    const checkout =
-        document.getElementById("checkoutButton");
-
-
-    if (!lista) {
-
-        return;
-
-    }
-
-
-    const carrinho =
-        obterCarrinho();
-
-
+    const carrinho = await obterCarrinhoDoBanco();
     lista.innerHTML = "";
 
-
-    let valorTotal = 0;
-
+    let valorTotalSelecionado = 0;
     let quantidadeTotal = 0;
-
-
-
-    /* =====================================================
-       PRODUTOS
-    ====================================================== */
-
-    carrinho.forEach(
-        function(produto, indice) {
-
-
-            const quantidade =
-                Math.max(
-                    1,
-                    Number(produto.quantidade) || 1
-                );
-
-
-            const preco =
-                Number(produto.preco) || 0;
-
-
-            const subtotal =
-                preco * quantidade;
-
-
-            valorTotal += subtotal;
-
-            quantidadeTotal += quantidade;
-
-
-
-            /* =================================================
-               INFORMAÇÕES DO PRODUTO
-            ================================================== */
-
-            const info = produtosInfo[produto.nome] || {
-    categoria: "Produto",
-    descricao: "Produto selecionado na loja.",
-    imagem: produto.imagem || "fotos/mah_estetica.jpeg"
-};
- 
- /* =================================================
-               imagens
-            ================================================== */
-const imagensProdutos = {
-
-    "Kit Pantene Colageno 1 Sh 510ml + 1 Cond 510ml + Masc 550ml":
-        "fotos/combopantene.webp",
-
-    "Combo Siagé Nutri Acid.Complex":
-        "fotos/Combosiage.webp",
-
-    "Kit Glow Shine Completo":
-        "fotos/comboglowshine.webp",
-
-    "Kit Essencial Rn-0,3":
-        "fotos/Kitprincipia.webp",
-
-    "Serum Facial Nivea Luminous 630 Skin Glow 15Ml":
-        "fotos/serumnivea.webp",
-
-    "Kit Skin Care Ácido Hyalurônico + Vitamina C Soft Beauty":
-        "fotos/acidosoftbeauty.webp"
-
-};
-
-
-            /* =================================================
-               CRIAR ITEM
-            ================================================== */
-
-            const item =
-                document.createElement("article");
-
-
-            item.className =
-                "item";
-
-
-            item.innerHTML = `
-
-             <img
-    class="item-image"
-    src="${imagensProdutos[produto.nome] || 'fotos/mah_estetica.jpeg'}"
-    alt="${escaparHTML(produto.nome)}"
->
->
-
-
-                <div class="item-info">
-
-                    <span class="item-category">
-                        ${escaparHTML(info.categoria)}
-                    </span>
-
-                    <h3>
-                        ${escaparHTML(produto.nome)}
-                    </h3>
-
-                    <p>
-                        ${escaparHTML(info.descricao)}
-                    </p>
-
-                </div>
-
-
-                <strong class="item-price">
-
-                    ${formatarPreco(subtotal)}
-
-                </strong>
-
-
-                <div class="quantity-wrap">
-
-
-                    <button
-                        type="button"
-                        class="quantity-btn decrease"
-                        data-index="${indice}"
-                        aria-label="Diminuir quantidade"
-                    >
-
-                        <i class="fa-solid fa-minus"></i>
-
-                    </button>
-
-
-                    <input
-                        type="number"
-                        class="quantity"
-                        value="${quantidade}"
-                        min="1"
-                        data-index="${indice}"
-                        aria-label="Quantidade de ${escaparHTML(produto.nome)}"
-                    >
-
-
-                    <button
-                        type="button"
-                        class="quantity-btn increase"
-                        data-index="${indice}"
-                        aria-label="Aumentar quantidade"
-                    >
-
-                        <i class="fa-solid fa-plus"></i>
-
-                    </button>
-
-
-                </div>
-
-
-                <button
-                    type="button"
-                    class="remove-item"
-                    data-index="${indice}"
-                    title="Remover produto"
-                    aria-label="Remover ${escaparHTML(produto.nome)}"
-                >
-
-                    <i class="fa-regular fa-trash-can"></i>
-
-                </button>
-
-            `;
-
-
-            lista.appendChild(item);
-
+    let quantidadeSelecionada = 0;
+
+    carrinho.forEach(function(produto, indice) {
+        const quantidade = Math.max(1, Number(produto.quantidade) || 1);
+        const preco = Number(produto.preco) || 0;
+        const subtotal = preco * quantidade;
+
+        quantidadeTotal += quantidade;
+        if (produto.selecionado !== false) {
+            valorTotalSelecionado += subtotal;
+            quantidadeSelecionada += quantidade;
         }
-    );
 
+        const item = document.createElement("article");
+        item.className = "item";
 
+        item.innerHTML = `
+            <input
+                type="checkbox"
+                class="item-selection"
+                data-index="${indice}"
+                ${produto.selecionado !== false ? "checked" : ""}
+            >
+            <img
+                class="item-image"
+                src="${produto.imagem || 'fotos/mah_estetica.jpeg'}"
+                alt="${produto.nome}"
+            >
+            <div class="item-info">
+                <span class="item-category">${produto.categoria || 'Produto'}</span>
+                <h3>${produto.nome}</h3>
+                <p>${produto.descricao || ''}</p>
+            </div>
+            <strong class="item-price">${formatarPreco(subtotal)}</strong>
+            <div class="quantity-wrap">
+                <button type="button" class="quantity-btn decrease" data-index="${indice}">
+                    <i class="fa-solid fa-minus"></i>
+                </button>
+                <input type="number" class="quantity" value="${quantidade}" min="1" data-index="${indice}">
+                <button type="button" class="quantity-btn increase" data-index="${indice}">
+                    <i class="fa-solid fa-plus"></i>
+                </button>
+            </div>
+            <button type="button" class="remove-item" data-index="${indice}" title="Remover produto">
+                <i class="fa-regular fa-trash-can"></i>
+            </button>
+        `;
 
-    /* =====================================================
-       ESTADO DO CARRINHO
-    ====================================================== */
+        lista.appendChild(item);
+    });
 
     if (carrinho.length === 0) {
-
-        vazio.style.display =
-            "block";
-
-        checkout.disabled =
-            true;
-
+        vazio.style.display = "block";
+        checkout.disabled = true;
+    } else {
+        vazio.style.display = "none";
+        checkout.disabled = !carrinho.some(p => p.selecionado !== false);
     }
 
-    else {
+    totalProdutos.textContent = formatarPreco(valorTotalSelecionado);
+    total.textContent = formatarPreco(valorTotalSelecionado);
+    contador.textContent = quantidadeTotal;
+    labelItens.textContent = `${quantidadeTotal} itens`;
 
-        vazio.style.display =
-            "none";
-
-        checkout.disabled =
-            false;
-
-    }
-
-
-
-    /* =====================================================
-       ATUALIZAR VALORES
-    ====================================================== */
-
-    totalProdutos.textContent =
-        formatarPreco(valorTotal);
-
-
-    total.textContent =
-        formatarPreco(valorTotal);
-
-
-    contador.textContent =
-        quantidadeTotal;
-
-
-    labelItens.textContent =
-        quantidadeTotal === 1
-            ? "1 item"
-            : `${quantidadeTotal} itens`;
-
-
-
-    adicionarEventosItens();
-
+    adicionarEventosItens(carrinho);
 }
 
-
+function formatarPreco(valor) {
+    return valor.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+}
 
 /* =========================================================
    EVENTOS DOS ITENS
 ========================================================= */
+function adicionarEventosItens(carrinho) {
+    // Checkbox de seleção
+    document.querySelectorAll(".item-selection").forEach(function(input) {
+        input.addEventListener("change", async function() {
+            const index = Number(input.dataset.index);
+            carrinho[index].selecionado = input.checked;
+            await salvarAlteracaoItem(carrinho[index]);
+            renderizarCarrinho();
+        });
+    });
 
-function adicionarEventosItens() {
+    // Aumentar quantidade
+    document.querySelectorAll(".increase").forEach(function(botao) {
+        botao.addEventListener("click", async function() {
+            const index = Number(botao.dataset.index);
+            carrinho[index].quantidade++;
+            await salvarAlteracaoItem(carrinho[index]);
+            renderizarCarrinho();
+        });
+    });
 
-
-    /* =====================================================
-       AUMENTAR
-    ====================================================== */
-
-    document
-        .querySelectorAll(".increase")
-        .forEach(
-            function(botao) {
-
-                botao.addEventListener(
-                    "click",
-                    function() {
-
-                        alterarQuantidade(
-                            Number(
-                                botao.dataset.index
-                            ),
-                            1
-                        );
-
-                    }
-                );
-
+    // Diminuir quantidade
+    document.querySelectorAll(".decrease").forEach(function(botao) {
+        botao.addEventListener("click", async function() {
+            const index = Number(botao.dataset.index);
+            if (carrinho[index].quantidade > 1) {
+                carrinho[index].quantidade--;
+                await salvarAlteracaoItem(carrinho[index]);
+                renderizarCarrinho();
             }
-        );
+        });
+    });
 
-
-
-    /* =====================================================
-       DIMINUIR
-    ====================================================== */
-
-    document
-        .querySelectorAll(".decrease")
-        .forEach(
-            function(botao) {
-
-                botao.addEventListener(
-                    "click",
-                    function() {
-
-                        alterarQuantidade(
-                            Number(
-                                botao.dataset.index
-                            ),
-                            -1
-                        );
-
-                    }
-                );
-
-            }
-        );
-
-
-
-    /* =====================================================
-       INPUT DE QUANTIDADE
-    ====================================================== */
-
-    document
-        .querySelectorAll(".quantity")
-        .forEach(
-            function(input) {
-
-                input.addEventListener(
-                    "change",
-                    function() {
-
-                        const indice =
-                            Number(
-                                input.dataset.index
-                            );
-
-
-                        const quantidade =
-                            Math.max(
-                                1,
-                                Number(input.value) || 1
-                            );
-
-
-                        const carrinho =
-                            obterCarrinho();
-
-
-                        if (carrinho[indice]) {
-
-                            carrinho[indice].quantidade =
-                                quantidade;
-
-
-                            salvarCarrinho(
-                                carrinho
-                            );
-
-
-                            renderizarCarrinho();
-
-                        }
-
-                    }
-                );
-
-            }
-        );
-
-
-
-    /* =====================================================
-       REMOVER PRODUTO
-    ====================================================== */
-
-    document
-        .querySelectorAll(".remove-item")
-        .forEach(
-            function(botao) {
-
-                botao.addEventListener(
-                    "click",
-                    function() {
-
-                        const indice =
-                            Number(
-                                botao.dataset.index
-                            );
-
-
-                        const carrinho =
-                            obterCarrinho();
-
-
-                        carrinho.splice(
-                            indice,
-                            1
-                        );
-
-
-                        salvarCarrinho(
-                            carrinho
-                        );
-
-
-                        renderizarCarrinho();
-
-                    }
-                );
-
-            }
-        );
-
+    // Remover produto
+    document.querySelectorAll(".remove-item").forEach(function(botao) {
+        botao.addEventListener("click", async function() {
+            const index = Number(botao.dataset.index);
+            await removerItemDoBanco(carrinho[index]);
+            renderizarCarrinho();
+        });
+    });
 }
 
-
-
-/* =========================================================
-   ALTERAR QUANTIDADE
-========================================================= */
-
-function alterarQuantidade(
-    indice,
-    alteracao
-) {
-
-    const carrinho =
-        obterCarrinho();
-
-
-    if (!carrinho[indice]) {
-
-        return;
-
-    }
-
-
-    const novaQuantidade =
-        Number(
-            carrinho[indice].quantidade || 1
-        ) + alteracao;
-
-
-    carrinho[indice].quantidade =
-        Math.max(
-            1,
-            novaQuantidade
-        );
-
-
-    salvarCarrinho(
-        carrinho
-    );
-
-
+// Inicialização ao carregar a página
+document.addEventListener("DOMContentLoaded", function() {
     renderizarCarrinho();
 
-}
+    const checkout = document.getElementById("checkoutButton");
+    if (checkout) {
+        checkout.addEventListener("click", async function() {
+            const carrinho = await obterCarrinhoDoBanco();
+            const itensSelecionados = carrinho.filter(p => p.selecionado !== false);
 
+            if (itensSelecionados.length === 0) return;
 
-
-/* =========================================================
-   FINALIZAR PEDIDO
-========================================================= */
-
-document.addEventListener(
-    "DOMContentLoaded",
-    function() {
-
-
-        renderizarCarrinho();
-
-
-        const checkout =
-            document.getElementById(
-                "checkoutButton"
-            );
-
-
-        if (checkout) {
-
-            checkout.addEventListener(
-                "click",
-                function() {
-
-
-                    const carrinho =
-                        obterCarrinho();
-
-
-                    if (
-                        carrinho.length === 0
-                    ) {
-
-                        return;
-
-                    }
-
-
-                    alert(
-                        "Pedido pronto para ser finalizado!\n\n" +
-                        "A integração do pagamento pode ser adicionada posteriormente."
-                    );
-
-                }
-            );
-
-        }
-
+            sessionStorage.setItem("itensSelecionados", JSON.stringify(itensSelecionados));
+            window.location.href = "pagamentos.html";
+        });
     }
-);
+});
