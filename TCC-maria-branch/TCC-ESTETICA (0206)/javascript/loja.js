@@ -69,11 +69,12 @@ async function carregarProdutosDoBanco() {
 
     produtos.forEach(produto => {
         const precoFormatado = Number(produto.preco).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+        const imagemUrl = produto.imagem_url || '';
         
         htmlProdutos += `
             <article class="produto">
                 <div class="imagem-produto">
-                    <img src="${produto.imagem_url || 'fotos/placeholder.webp'}" alt="${produto.nome}">
+                    <img src="${imagemUrl}" alt="${produto.nome}">
                     ${produto.destaque ? '<span class="produto-tag">Destaque</span>' : ''}
                 </div>
                 <div class="conteudo-produto">
@@ -88,6 +89,7 @@ async function carregarProdutosDoBanco() {
                             data-id="${produto.id}"
                             data-name="${produto.nome}"
                             data-price="${produto.preco}"
+                            data-imagem="${imagemUrl}"
                         >
                             <i class="fa-solid fa-cart-plus"></i>
                             Comprar
@@ -148,6 +150,7 @@ document.addEventListener("DOMContentLoaded", async function() {
             const produtoId = Number(botao.dataset.id);
             const nome = botao.dataset.name;
             const preco = botao.dataset.price;
+            const imagem = botao.dataset.imagem;
 
             const supabase = window.supabase;
             if (supabase) {
@@ -183,7 +186,7 @@ document.addEventListener("DOMContentLoaded", async function() {
                     if (produtoExistente) {
                         produtoExistente.quantidade++;
                     } else {
-                        carrinho.push({ id: produtoId, nome, preco: Number(preco), quantidade: 1, selecionado: true });
+                        carrinho.push({ id: produtoId, nome, preco: Number(preco), imagem, quantidade: 1, selecionado: true });
                     }
                     sessionStorage.setItem("carrinho", JSON.stringify(carrinho));
                 }
