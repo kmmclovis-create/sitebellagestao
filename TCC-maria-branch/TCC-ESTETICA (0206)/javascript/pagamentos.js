@@ -1,3 +1,38 @@
+// =========================================================
+    // MÁSCARAS E LIMITES DOS CAMPOS DO CARTÃO
+    // =========================================================
+    const inputValidade = document.getElementById("validade");
+    const inputCvv = document.getElementById("cvv");
+    const inputNumeroCartao = document.getElementById("numero-cartao");
+
+    // Limitar CVV apenas a números
+    if (inputCvv) {
+        inputCvv.addEventListener("input", function() {
+            this.value = this.value.replace(/\D/g, "").slice(0, 4);
+        });
+    }
+
+    // Formatar validade automaticamente para MM/AA e limitar a 5 caracteres
+    if (inputValidade) {
+        inputValidade.addEventListener("input", function() {
+            let valor = this.value.replace(/\D/g, ""); // Remove tudo que não for dígito
+            if (valor.length > 4) valor = valor.slice(0, 4); // Limita a 4 números
+
+            if (valor.length >= 3) {
+                this.value = valor.slice(0, 2) + "/" + valor.slice(2);
+            } else {
+                this.value = valor;
+            }
+        });
+    }
+
+    // Limitar número do cartão apenas a números
+    if (inputNumeroCartao) {
+        inputNumeroCartao.addEventListener("input", function() {
+            this.value = this.value.replace(/\D/g, "").slice(0, 16); // Máximo de 16 dígitos padrão de cartão
+        });
+    }
+
 document.addEventListener("DOMContentLoaded", function() {
     const itensSelecionados = JSON.parse(
         sessionStorage.getItem("itensSelecionados") || "[]"
