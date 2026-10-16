@@ -1201,16 +1201,26 @@ Rodapé com informações, links e redes sociais.
 }
 
 .cart-icon {
-    position: relative; /* Mantém o pai como referência */
+    position: relative !important; /* Garante que é o ponto de referência para o contador */
+    width: 3.8rem;
+    height: 3.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: var(--light-pink);
+    color: var(--pink);
+    font-size: 1.5rem;
+    transition: .3s;
 }
 
 .cart-icon #cartCount {
-    position: absolute; /* Fixa o número em relação ao carrinho */
-    top: -0.4rem;
-    right: -0.4rem;
+    position: absolute !important;
+    top: -0.3rem;
+    right: -0.3rem;
     min-width: 1.8rem;
     height: 1.8rem;
-    padding: .2rem .4rem;
+    padding: 0 .4rem;
     display: flex;
     align-items: center;
     justify-content: center;
