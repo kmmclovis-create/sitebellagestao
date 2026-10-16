@@ -86,24 +86,28 @@ function renderizarCalendario() {
         botao.dataset.mes = mesAtual;
         botao.dataset.dia = dia;
 
+        // Verifica se a data é passada ou se é domingo (0 = Domingo)
+        const dataAtualObj = new Date(anoAtual, mesAtual, dia);
+        const ehDomingo = dataAtualObj.getDay() === 0;
         const passado = diaJaPassou(anoAtual, mesAtual, dia);
 
-        if (passado) {
+        if (passado || ehDomingo) {
             botao.classList.add('disabled');
             botao.disabled = true;
         }
 
         const ehHoje = dia === hoje.getDate() && mesAtual === hoje.getMonth() && anoAtual === hoje.getFullYear();
 
-        if (ehHoje && !passado) {
+        if (ehHoje && !passado && !ehDomingo) {
             botao.classList.add('selected');
         }
 
-    botao.addEventListener('click', () => {
-    document.querySelectorAll('.day').forEach(d => d.classList.remove('selected'));
-    botao.classList.add('selected');
-    atualizarHorariosDisponiveis(); // <-- Adicionar aqui
-});
+        botao.addEventListener('click', () => {
+            if (passado || ehDomingo) return;
+            document.querySelectorAll('.day').forEach(d => d.classList.remove('selected'));
+            botao.classList.add('selected');
+            atualizarHorariosDisponiveis();
+        });
 
         diasEl.appendChild(botao);
     }
