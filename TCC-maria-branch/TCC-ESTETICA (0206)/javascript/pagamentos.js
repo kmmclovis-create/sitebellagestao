@@ -166,8 +166,18 @@ document.addEventListener("DOMContentLoaded", function() {
                 carrinhoSessao = carrinhoSessao.filter(p => !idsProdutosComprados.includes(p.id));
                 sessionStorage.setItem("carrinho", JSON.stringify(carrinhoSessao));
 
-                alert("Pedido realizado com sucesso! Obrigado pela preferência.");
-                window.location.href = "index.html";
+               // No momento em que o pedido for concluído com sucesso:
+const modal = document.getElementById("customModal");
+const btnFechar = document.getElementById("modalCloseBtn");
+
+// Mostra o modal personalizado
+modal.style.display = "flex";
+
+// Quando o usuário clicar em OK, redireciona para a página inicial
+btnFechar.onclick = function() {
+    modal.style.display = "none";
+    window.location.href = "index.html";
+};
 
             } catch (erro) {
                 console.error("Erro ao finalizar pedido:", erro);
