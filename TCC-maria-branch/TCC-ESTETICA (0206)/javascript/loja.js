@@ -141,42 +141,65 @@ document.addEventListener("DOMContentLoaded", async function() {
     }
 
     /* =================================================
-       BOTÕES DE CARRINHO (Delegação de Eventos)
-    ================================================== */
-    const container = document.getElementById("productsContainer");
-    if (container) {
-        container.addEventListener("click", function(e) {
-            const botao = e.target.closest(".btn-carrinho");
-            if (!botao) return;
+   BOTÕES DE CARRINHO (Com suporte ao Supabase)
+================================================== */
+const container = document.getElementById("productsContainer");
+if (container) {
+    container.addEventListener("click", async function(e) {
+        const botao = e.target.closest(".btn-carrinho");
+        if (!botao) return;
 
-            const nome = botao.dataset.name;
-            const preco = botao.dataset.price;
+        const produtoId = Number(botao.dataset.id); // Certifique-se de que o botão tem o id do produto no banco
+        const nome = botao.dataset.name;
+        const preco = botao.dataset.price;
 
+        const supabase = window.supabase;
+        const { data: { user } } = await supabase.auth.getUser();
+
+        if (user) {
+            // Se o utilizador estiver logado, salva na base de dados
+            // Verifica se o item já existe no carrinho dele
+            const { data: itemExistente } = await supabase
+                .from("carrinho_itens")
+                .select("id, quantidade")
+                .eq("perfil_id", user.id)
+                .eq("produto_id", produtoId)
+                .single();
+
+            if (itemExistente) {
+                // Se já existe, incrementa a quantidade
+                await supabase
+                    .from("carrinho_itens")
+                    .update({ quantidade: itemExistente.quantidade + 1 })
+                    .eq("id", itemExistente.id);
+            } else {
+                // Se não existe, insere um novo
+                await supabase
+                    .from("carrinho_itens")
+                    .insert([{
+                        perfil_id: user.id,
+                        produto_id: produtoId,
+                        quantidade: 1,
+                        selecionado: true
+                    }]);
+            }
+        } else {
+            // Fallback para visitante (sessionStorage)
             let carrinho = JSON.parse(sessionStorage.getItem("carrinho")) || [];
-
-            const produtoExistente = carrinho.find(function(produto) {
-                return produto.nome === nome;
-            });
+            const produtoExistente = carrinho.find(p => p.nome === nome);
 
             if (produtoExistente) {
                 produtoExistente.quantidade++;
             } else {
-                carrinho.push({
-                    nome: nome,
-                    preco: Number(preco),
-                    quantidade: 1
-                });
+                carrinho.push({ id: produtoId, nome, preco: Number(preco), quantidade: 1, selecionado: true });
             }
-
             sessionStorage.setItem("carrinho", JSON.stringify(carrinho));
-            atualizarContadorCarrinho();
+        }
 
-            alert(nome + " foi adicionado ao carrinho!");
-        });
-    }
-
-    atualizarContadorCarrinho();
-});
+        atualizarContadorCarrinho();
+        alert(nome + " foi adicionado ao carrinho!");
+    });
+}
 
 /* =========================================================
    CONTADOR DO CARRINHO
