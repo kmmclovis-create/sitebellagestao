@@ -1217,66 +1217,51 @@ HEADER
 
 
 /* =========================================================
-   RESPONSIVIDADE
+   RESPONSIVIDADE CORRIGIDA
 ========================================================= */
 
 @media (max-width: 1100px) {
 
     .container {
-
         grid-template-columns: 1fr;
-
     }
-
 
     .summary {
-
         position: static;
-
     }
 
-
     .item {
-
         grid-template-columns:
             10rem
             minmax(0, 1fr)
             auto;
-
     }
 
+    /* Corrige o tamanho da imagem para encaixar perfeitamente na coluna de 10rem */
+    .item img,
+    .item-image {
+        width: 10rem !important;
+        height: 10rem !important;
+        min-width: 10rem !important;
+    }
 
     .item-price {
-
         grid-column: 3;
-
         grid-row: 1;
-
     }
-
 
     .quantity-wrap {
-
         grid-column: 3;
-
         grid-row: 2;
-
     }
-
 
     .remove-item {
-
         grid-column: 3;
-
         grid-row: 3;
-
     }
 
-
     .navbar {
-
         gap: 1.5rem;
-
     }
 
 }
@@ -1285,169 +1270,94 @@ HEADER
 @media (max-width: 750px) {
 
     .header {
-
-        padding:
-            1.5rem 5%;
-
+        padding: 1.5rem 5%;
     }
-
 
     .menu-icon {
-
         display: block;
-
         order: 3;
-
         margin-left: 1rem;
-
     }
-
 
     .navbar {
-
         position: absolute;
-
         top: 100%;
-
         left: 0;
-
         right: 0;
-
         display: none;
-
         flex-direction: column;
-
         gap: 0;
-
         margin: 0;
-
         background: white;
-
-        box-shadow:
-            0 .5rem 1.5rem
-            rgba(0, 0, 0, .08);
-
+        box-shadow: 0 .5rem 1.5rem rgba(0, 0, 0, .08);
     }
-
 
     .navbar a {
-
         width: 100%;
-
-        padding:
-            1.5rem 5%;
-
+        padding: 1.5rem 5%;
     }
-
 
     .navbar a::after {
-
         display: none;
-
     }
 
-
-    #menu-toggle:checked
-    ~ .navbar {
-
+    #menu-toggle:checked ~ .navbar {
         display: flex;
-
     }
-
 
     .header-icons {
-
         margin-left: auto;
-
     }
-
 
     .carrinho-hero {
-
-        padding:
-            12rem 5%
-            5rem;
-
+        padding: 12rem 5% 5rem;
     }
-
 
     .carrinho-hero h1 {
-
         font-size: 4rem;
-
     }
-
 
     .carrinho-page {
-
-        padding:
-            5rem 5%
-            6rem;
-
+        padding: 5rem 5% 6rem;
     }
-
 
     .cart-items,
     .summary {
-
         padding: 2rem;
-
     }
 
-
     .item {
-
         grid-template-columns:
             8rem
             minmax(0, 1fr)
             auto;
-
         gap: 1.2rem;
-
     }
 
-
-    .item img {
-
-        width: 8rem;
-
-        height: 8rem;
-
+    .item img,
+    .item-image {
+        width: 8rem !important;
+        height: 8rem !important;
+        min-width: 8rem !important;
     }
-
 
     .item-price {
-
         grid-column: 2;
-
         grid-row: 2;
-
     }
-
 
     .quantity-wrap {
-
         grid-column: 3;
-
         grid-row: 2;
-
     }
-
 
     .remove-item {
-
         grid-column: 3;
-
         grid-row: 1;
-
     }
 
-
     .footer-grid {
-
-        grid-template-columns:
-            repeat(2, 1fr);
-
+        grid-template-columns: repeat(2, 1fr);
     }
 
 }
@@ -1456,73 +1366,44 @@ HEADER
 @media (max-width: 600px) {
 
     html {
-
         font-size: 58%;
-
     }
-
 
     .carrinho-hero {
-
-        padding:
-            12rem 2rem
-            4rem;
-
+        padding: 12rem 2rem 4rem;
     }
-
 
     .carrinho-page {
-
-        padding:
-            4rem 2rem
-            5rem;
-
+        padding: 4rem 2rem 5rem;
     }
-
 
     .cart-title {
-
         align-items: flex-start;
-
         flex-direction: column;
-
     }
 
-
     .item {
-
         grid-template-columns:
             7rem
             minmax(0, 1fr)
             auto;
-
     }
 
-
-    .item img {
-
-        width: 7rem;
-
-        height: 7rem;
-
+    .item img,
+    .item-image {
+        width: 7rem !important;
+        height: 7rem !important;
+        min-width: 7rem !important;
     }
-
 
     .footer-grid {
-
         grid-template-columns: 1fr;
-
     }
 
-
     .credit {
-
         flex-direction: column;
-
         gap: 1rem;
-
         text-align: center;
-
     }
 
 }
