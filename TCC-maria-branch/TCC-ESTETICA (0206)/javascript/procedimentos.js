@@ -232,6 +232,28 @@ function atualizarPreco(card) {
 /* =========================================================
    DOM
 ========================================================= */
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        // ... (todo o código que já existe de pesquisa, selects e botões) ...
+
+        /* =================================================
+           ATUALIZAR CONTADOR DO CARRINHO AO CARREGAR
+        ================================================== */
+        atualizarContadorCarrinho();
+
+        // Ouve eventos caso o carrinho seja atualizado noutras abas/ações
+        window.addEventListener("carrinhoAtualizado", atualizarContadorCarrinho);
+
+        /*
+         * Executa a pesquisa uma vez ao
+         * carregar a página.
+         */
+        pesquisar();
+
+    }
+);
 
 document.addEventListener(
     "DOMContentLoaded",
