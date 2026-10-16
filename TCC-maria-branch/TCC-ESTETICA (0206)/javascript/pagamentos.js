@@ -27,9 +27,16 @@
     }
 
     // Limitar número do cartão apenas a números
+    // Formatar número do cartão automaticamente em blocos de 4 dígitos e limitar a 16 dígitos
     if (inputNumeroCartao) {
         inputNumeroCartao.addEventListener("input", function() {
-            this.value = this.value.replace(/\D/g, "").slice(0, 16); // Máximo de 16 dígitos padrão de cartão
+            // Remove tudo o que não for dígito e limita a 16 números
+            let valor = this.value.replace(/\D/g, "").slice(0, 16);
+            
+            // Divide em grupos de até 4 dígitos e junta-os com um espaço
+            let formatado = valor.match(/.{1,4}/g)?.join(" ") || "";
+            
+            this.value = formatado;
         });
     }
 
