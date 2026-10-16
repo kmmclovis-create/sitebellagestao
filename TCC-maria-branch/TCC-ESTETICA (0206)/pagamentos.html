@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pagamento | Bella Gestão</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/pagamentos.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+</head>
+<body>
+  <header class="payment-header">
+    <a class="logo" href="index.html" aria-label="Bella Gestão">Bella<span>.</span></a>
+    <span class="header-note"><i class="fa-solid fa-lock"></i> Pagamento seguro</span>
+  </header>
+
+  <main class="payment-page">
+    <div class="payment-heading">
+      <span class="payment-eyebrow">BELLA GESTÃO • BELEZA E BEM-ESTAR</span>
+      <h1>Finalizar <span>pagamento</span></h1>
+      <p>Escolha a forma de pagamento que for melhor para você.</p>
+    </div>
+
+    <div class="payment-layout">
+      <section class="payment-panel" aria-labelledby="method-title">
+        <div class="panel-heading">
+          <span class="heading-icon"><i class="fa-solid fa-lock"></i></span>
+          <div><h2 id="method-title">Forma de pagamento</h2><p>Selecione uma das opções abaixo</p></div>
+        </div>
+
+        <form class="payment-form" action="#" method="post">
+          <div class="payment-options">
+            <input type="radio" name="metodo" id="metodo-cartao" value="cartao" checked>
+            <label class="payment-option" for="metodo-cartao">
+              <span class="option-icon"><i class="fa-regular fa-credit-card"></i></span>
+              <span class="option-copy"><strong>Cartão</strong><small>Crédito ou débito</small></span>
+              <i class="fa-solid fa-circle-check option-check"></i>
+            </label>
+
+            <input type="radio" name="metodo" id="metodo-pix" value="pix">
+            <label class="payment-option" for="metodo-pix">
+              <span class="option-icon pix-icon"><i class="fa-brands fa-pix"></i></span>
+              <span class="option-copy"><strong>Pix</strong><small>Pagamento instantâneo</small></span>
+              <i class="fa-solid fa-circle-check option-check"></i>
+            </label>
+
+            <input type="radio" name="metodo" id="metodo-dinheiro" value="dinheiro">
+            <label class="payment-option" for="metodo-dinheiro">
+              <span class="option-icon cash-icon"><i class="fa-solid fa-money-bill-wave"></i></span>
+              <span class="option-copy"><strong>Dinheiro</strong><small>Pague presencialmente</small></span>
+              <i class="fa-solid fa-circle-check option-check"></i>
+            </label>
+          </div>
+
+          <div class="method-details card-details">
+            <h3>Dados do cartão</h3>
+            <p class="details-description">Preencha os dados para continuar.</p>
+            <div class="field-group">
+              <label for="titular">Nome impresso no cartão</label>
+              <input type="text" id="titular" name="titular" placeholder="Nome como aparece no cartão" autocomplete="cc-name">
+            </div>
+            <div class="field-group">
+              <label for="numero-cartao">Número do cartão</label>
+              <input type="text" id="numero-cartao" name="numero-cartao" placeholder="0000 0000 0000 0000" inputmode="numeric" autocomplete="cc-number" maxlength="23">
+            </div>
+            <div class="field-row">
+              <div class="field-group"><label for="validade">Validade</label><input type="text" id="validade" name="validade" placeholder="MM/AA" autocomplete="cc-exp" maxlength="5"></div>
+              <div class="field-group"><label for="cvv">CVV</label><input type="password" id="cvv" name="cvv" placeholder="•••" inputmode="numeric" autocomplete="cc-csc" maxlength="4"></div>
+            </div>
+            <div class="field-group">
+              <label for="tipo-cartao">Tipo de cartão</label>
+              <select id="tipo-cartao" name="tipo-cartao"><option value="credito">Crédito</option><option value="debito">Débito</option></select>
+            </div>
+          </div>
+
+          <div class="method-details pix-details">
+            <span class="detail-symbol"><i class="fa-brands fa-pix"></i></span>
+            <h3>Pagamento via Pix</h3>
+            <p>Ao continuar, serão exibidas as instruções para realizar o Pix. O pagamento será confirmado após a compensação.</p>
+            <div class="pix-notice"><i class="fa-solid fa-shield-halved"></i> Rápido, prático e seguro</div>
+          </div>
+
+          <div class="method-details cash-details">
+            <span class="detail-symbol cash-symbol"><i class="fa-solid fa-money-bill-wave"></i></span>
+            <h3>Pagamento em dinheiro</h3>
+            <p>O pagamento será realizado presencialmente na Bella Gestão. Se precisar de troco, avise nossa equipe no atendimento.</p>
+            <div class="pix-notice"><i class="fa-regular fa-calendar-check"></i> Combine o pagamento no atendimento</div>
+          </div>
+
+          <label class="terms-check"><input type="checkbox" required> <span>Confirmo que revisei a forma de pagamento escolhida.</span></label>
+          <button class="payment-submit" type="submit">Continuar <i class="fa-solid fa-arrow-right"></i></button>
+          <p class="secure-note"><i class="fa-solid fa-lock"></i> Seus dados devem ser processados em um ambiente seguro.</p>
+        </form>
+      </section>
+
+      <aside class="order-panel">
+        <div class="order-top"><span class="order-icon"><i class="fa-solid fa-bag-shopping"></i></span><div><h2>Resumo do pedido</h2><p>Confira antes de continuar</p></div></div>
+        <div class="order-placeholder" id="orderPlaceholder"><i class="fa-solid fa-spa"></i><p>Nenhum item selecionado</p><small>Volte ao carrinho e selecione os produtos que deseja pagar.</small></div>
+        <div class="order-items" id="orderItems"></div>
+        <div class="order-line"><span>Subtotal</span><strong id="paymentSubtotal">R$ 0,00</strong></div>
+        <div class="order-line"><span>Descontos</span><strong>—</strong></div>
+        <div class="order-total"><span>Total</span><strong id="paymentTotal">R$ 0,00</strong></div>
+        <span class="back-link"><i class="fa-solid fa-shield-heart"></i> Ambiente de pagamento Bella Gestão</span>
+        <div class="trust-note"><i class="fa-solid fa-heart"></i><span>Obrigada por escolher a <strong>Bella Gestão</strong> para cuidar de você.</span></div>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="payment-footer"><p>© 2026 <strong>Bella Gestão</strong>. Todos os direitos reservados.</p><p>Beleza • Cuidado • Bem-estar</p></footer>
+  <script src="javascript/pagamentos.js"></script>
+</body>
+</html>
