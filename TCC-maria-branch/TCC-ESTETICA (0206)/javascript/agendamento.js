@@ -358,3 +358,82 @@ if (phoneInput) {
 }
 
 atualizarDetalhesAgendamento();
+
+
+// Lista padrão de horários de atendimento da Bella Gestão
+const HORARIOS_PADRAO = [
+    "08:00", "08:30", "09:00", "09:30", 
+    "10:00", "10:30", "11:00", "13:00", 
+    "13:30", "14:00", "14:30", "15:00", 
+    "15:30", "16:00", "16:30", "17:00"
+];
+
+async function atualizarHorariosDisponiveis() {
+    const diaSelecionado = document.querySelector('.day.selected');
+    const containerHorarios = document.getElementById('gradeHorarios');
+    
+    if (!diaSelecionado || !containerHorarios) return;
+
+    const ano = Number(diaSelecionado.dataset.ano);
+    const mes = Number(diaSelecionado.dataset.mes);
+    const dia = Number(diaSelecionado.dataset.dia);
+
+    const dataFormatada = `${ano}-${String(mes + 1).padStart(2, '0')}-${String(dia).padStart(2, '0')}`;
+
+    // 1. Busca os horários já ocupados no Supabase para esta data
+    let horariosOcupados = [];
+    const supabase = window.supabase;
+    if (supabase) {
+        const { data, error } = await supabase
+            .from('agendamentos')
+            .select('horario')
+            .eq('data', dataFormatada);
+
+        if (!error && data) {
+            horariosOcupados = data.map(item => item.horario ? item.horario.slice(0, 5) : '');
+        }
+    }
+
+    const agora = new Date();
+    const ehHoje = dia === agora.getDate() && mes === agora.getMonth() && ano === agora.getFullYear();
+
+    // 2. Limpa a grade e gera os botões dinamicamente
+    containerHorarios.innerHTML = '';
+
+    HORARIOS_PADRAO.forEach(horario => {
+        const [hStr, mStr] = horario.split(':');
+        const horaSlot = Number(hStr);
+        const minutoSlot = Number(mStr);
+
+        let jaPassou = false;
+        if (ehHoje) {
+            const horaAtual = agora.getHours();
+            const minutoAtual = agora.getMinutes();
+            if (horaSlot < horaAtual || (horaSlot === horaAtual && minutoSlot <= minutoAtual)) {
+                jaPassou = true;
+            }
+        }
+
+        const ocupadoNoBanco = horariosOcupados.includes(horario);
+
+        // Cria o botão do horário
+        const botao = document.createElement('button');
+        botao.type = 'button';
+        botao.className = 'hour';
+        botao.textContent = horario;
+
+        if (jaPassou || ocupadoNoBanco) {
+            botao.classList.add('disabled');
+            botao.style.pointerEvents = 'none';
+            botao.style.opacity = '0.4';
+        } else {
+            // Evento de clique para selecionar o horário
+            botao.addEventListener('click', () => {
+                document.querySelectorAll('.hour').forEach(h => h.classList.remove('selected'));
+                botao.classList.add('selected');
+            });
+        }
+
+        containerHorarios.appendChild(botao);
+    });
+}
