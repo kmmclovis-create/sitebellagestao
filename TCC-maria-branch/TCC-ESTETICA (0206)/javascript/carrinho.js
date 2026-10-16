@@ -1,5 +1,5 @@
 /* =========================================================
-   CARRINHO INTEGRADO COM SUPABASE E SESSIONSTORAGE
+   CARRINHO INTEGRADO 100% COM O SUPABASE (SEM FALLBACKS FIXOS)
 ========================================================= */
 
 async function obterCarrinhoDoBanco() {
@@ -8,11 +8,11 @@ async function obterCarrinhoDoBanco() {
 
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) {
-        // Se não estiver logado, lê do sessionStorage
+        // Se não estiver logado, lê do sessionStorage (onde a imagem foi guardada a partir do Supabase)
         return JSON.parse(sessionStorage.getItem("carrinho")) || [];
     }
 
-    // Se estiver logado, busca da tabela carrinho_itens juntamente com os dados do produto
+    // Se estiver logado, busca da tabela carrinho_itens puxando a imagem_url diretamente da tabela produtos
     const { data, error } = await supabase
         .from("carrinho_itens")
         .select(`
@@ -43,7 +43,7 @@ async function obterCarrinhoDoBanco() {
         preco: Number(item.produtos.preco),
         descricao: item.produtos.descricao,
         categoria: item.produtos.categoria,
-        imagem: item.produtos.imagem_url,
+        imagem: item.produtos.imagem_url || '',
         quantidade: item.quantidade,
         selecionado: item.selecionado
     }));
@@ -54,7 +54,6 @@ async function salvarAlteracaoItem(item, carrinhoCompleto) {
     const { data: { user } } = await supabase.auth.getUser();
 
     if (!user) {
-        // Atualiza o sessionStorage se for visitante
         sessionStorage.setItem("carrinho", JSON.stringify(carrinhoCompleto));
         return;
     }
@@ -75,7 +74,6 @@ async function removerItemDoBanco(item, carrinhoCompleto) {
     const { data: { user } } = await supabase.auth.getUser();
 
     if (!user) {
-        // Atualiza o sessionStorage se for visitante
         sessionStorage.setItem("carrinho", JSON.stringify(carrinhoCompleto));
         return;
     }
@@ -134,6 +132,7 @@ async function renderizarCarrinho() {
                 class="item-image"
                 src="${produto.imagem || ''}"
                 alt="${produto.nome}"
+                style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px;"
             >
             <div class="item-info">
                 <span class="item-category">${produto.categoria || 'Produto'}</span>
@@ -182,7 +181,6 @@ function formatarPreco(valor) {
    EVENTOS DOS ITENS
 ========================================================= */
 function adicionarEventosItens(carrinho) {
-    // Checkbox de seleção
     document.querySelectorAll(".item-selection").forEach(function(input) {
         input.addEventListener("change", async function() {
             const index = Number(input.dataset.index);
@@ -192,7 +190,6 @@ function adicionarEventosItens(carrinho) {
         });
     });
 
-    // Aumentar quantidade
     document.querySelectorAll(".increase").forEach(function(botao) {
         botao.addEventListener("click", async function() {
             const index = Number(botao.dataset.index);
@@ -202,7 +199,6 @@ function adicionarEventosItens(carrinho) {
         });
     });
 
-    // Diminuir quantidade
     document.querySelectorAll(".decrease").forEach(function(botao) {
         botao.addEventListener("click", async function() {
             const index = Number(botao.dataset.index);
@@ -214,7 +210,6 @@ function adicionarEventosItens(carrinho) {
         });
     });
 
-    // Remover produto
     document.querySelectorAll(".remove-item").forEach(function(botao) {
         botao.addEventListener("click", async function() {
             const index = Number(botao.dataset.index);
