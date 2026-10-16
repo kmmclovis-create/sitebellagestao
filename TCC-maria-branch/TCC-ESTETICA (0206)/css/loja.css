@@ -284,43 +284,7 @@ input {
    CONTADOR DO CARRINHO
 ========================================================= */
 
-.cart-icon #cartCount {
 
-    position: absolute;
-
-    top: -.4rem;
-
-    right: -.4rem;
-
-    min-width: 1.8rem;
-
-    height: 1.8rem;
-
-    padding: .2rem .4rem;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    border:
-        2px solid
-        #fff;
-
-    border-radius: 50%;
-
-    background: var(--dark-pink);
-
-    color: #fff;
-
-    font-size: 1rem;
-
-    font-weight: 700;
-
-    line-height: 1;
-
-}
 
 
 /* =========================================================
