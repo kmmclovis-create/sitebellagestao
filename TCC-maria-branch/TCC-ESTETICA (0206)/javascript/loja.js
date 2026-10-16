@@ -85,6 +85,7 @@ async function carregarProdutosDoBanco() {
                         <button
                             type="button"
                             class="btn-carrinho"
+                            data-id="${produto.id}"
                             data-name="${produto.nome}"
                             data-price="${produto.preco}"
                         >
@@ -99,7 +100,6 @@ async function carregarProdutosDoBanco() {
 
     container.innerHTML = htmlProdutos;
 
-    // Executa a pesquisa e contador após renderizar
     pesquisar();
     atualizarContadorCarrinho();
 }
@@ -109,12 +109,8 @@ async function carregarProdutosDoBanco() {
 ========================================================= */
 document.addEventListener("DOMContentLoaded", async function() {
 
-    // Carrega os produtos do Supabase ao abrir a página
     await carregarProdutosDoBanco();
 
-    /* =================================================
-       ELEMENTOS DA PESQUISA
-    ================================================== */
     const input = document.getElementById("query");
     const clearBtn = document.getElementById("clearBtn");
 
@@ -141,79 +137,99 @@ document.addEventListener("DOMContentLoaded", async function() {
     }
 
     /* =================================================
-   BOTÕES DE CARRINHO (Com suporte ao Supabase)
-================================================== */
-const container = document.getElementById("productsContainer");
-if (container) {
-    container.addEventListener("click", async function(e) {
-        const botao = e.target.closest(".btn-carrinho");
-        if (!botao) return;
+       BOTÕES DE CARRINHO (Integrado com Supabase)
+    ================================================== */
+    const container = document.getElementById("productsContainer");
+    if (container) {
+        container.addEventListener("click", async function(e) {
+            const botao = e.target.closest(".btn-carrinho");
+            if (!botao) return;
 
-        const produtoId = Number(botao.dataset.id); // Certifique-se de que o botão tem o id do produto no banco
-        const nome = botao.dataset.name;
-        const preco = botao.dataset.price;
+            const produtoId = Number(botao.dataset.id);
+            const nome = botao.dataset.name;
+            const preco = botao.dataset.price;
 
-        const supabase = window.supabase;
-        const { data: { user } } = await supabase.auth.getUser();
+            const supabase = window.supabase;
+            if (supabase) {
+                const { data: { user } } = await supabase.auth.getUser();
 
-        if (user) {
-            // Se o utilizador estiver logado, salva na base de dados
-            // Verifica se o item já existe no carrinho dele
-            const { data: itemExistente } = await supabase
-                .from("carrinho_itens")
-                .select("id, quantidade")
-                .eq("perfil_id", user.id)
-                .eq("produto_id", produtoId)
-                .single();
+                if (user) {
+                    const { data: itemExistente } = await supabase
+                        .from("carrinho_itens")
+                        .select("id, quantidade")
+                        .eq("perfil_id", user.id)
+                        .eq("produto_id", produtoId)
+                        .single();
 
-            if (itemExistente) {
-                // Se já existe, incrementa a quantidade
-                await supabase
-                    .from("carrinho_itens")
-                    .update({ quantidade: itemExistente.quantidade + 1 })
-                    .eq("id", itemExistente.id);
-            } else {
-                // Se não existe, insere um novo
-                await supabase
-                    .from("carrinho_itens")
-                    .insert([{
-                        perfil_id: user.id,
-                        produto_id: produtoId,
-                        quantidade: 1,
-                        selecionado: true
-                    }]);
+                    if (itemExistente) {
+                        await supabase
+                            .from("carrinho_itens")
+                            .update({ quantidade: itemExistente.quantidade + 1 })
+                            .eq("id", itemExistente.id);
+                    } else {
+                        await supabase
+                            .from("carrinho_itens")
+                            .insert([{
+                                perfil_id: user.id,
+                                produto_id: produtoId,
+                                quantidade: 1,
+                                selecionado: true
+                            }]);
+                    }
+                } else {
+                    let carrinho = JSON.parse(sessionStorage.getItem("carrinho")) || [];
+                    const produtoExistente = carrinho.find(p => p.nome === nome);
+
+                    if (produtoExistente) {
+                        produtoExistente.quantidade++;
+                    } else {
+                        carrinho.push({ id: produtoId, nome, preco: Number(preco), quantidade: 1, selecionado: true });
+                    }
+                    sessionStorage.setItem("carrinho", JSON.stringify(carrinho));
+                }
             }
-        } else {
-            // Fallback para visitante (sessionStorage)
-            let carrinho = JSON.parse(sessionStorage.getItem("carrinho")) || [];
-            const produtoExistente = carrinho.find(p => p.nome === nome);
 
-            if (produtoExistente) {
-                produtoExistente.quantidade++;
-            } else {
-                carrinho.push({ id: produtoId, nome, preco: Number(preco), quantidade: 1, selecionado: true });
-            }
-            sessionStorage.setItem("carrinho", JSON.stringify(carrinho));
-        }
+            atualizarContadorCarrinho();
+            alert(nome + " foi adicionado ao carrinho!");
+        });
+    }
 
-        atualizarContadorCarrinho();
-        alert(nome + " foi adicionado ao carrinho!");
-    });
-}
+    atualizarContadorCarrinho();
+});
 
 /* =========================================================
    CONTADOR DO CARRINHO
 ========================================================= */
-function atualizarContadorCarrinho() {
+async function atualizarContadorCarrinho() {
     const contador = document.getElementById("cartCount");
     if (!contador) return;
 
-    const carrinho = JSON.parse(sessionStorage.getItem("carrinho")) || [];
-    let quantidade = 0;
+    const supabase = window.supabase;
+    let quantidadeTotal = 0;
 
+    if (supabase) {
+        const { data: { user } } = await supabase.auth.getUser();
+        if (user) {
+            const { data: itens } = await supabase
+                .from("carrinho_itens")
+                .select("quantidade")
+                .eq("perfil_id", user.id);
+
+            if (itens) {
+                itens.forEach(item => {
+                    quantidadeTotal += Number(item.quantidade) || 0;
+                });
+                contador.textContent = quantidadeTotal;
+                return;
+            }
+        }
+    }
+
+    // Fallback para visitante (sessionStorage)
+    const carrinho = JSON.parse(sessionStorage.getItem("carrinho")) || [];
     carrinho.forEach(function(produto) {
-        quantidade += Number(produto.quantidade);
+        quantidadeTotal += Number(produto.quantidade) || 0;
     });
 
-    contador.textContent = quantidade;
+    contador.textContent = quantidadeTotal;
 }
