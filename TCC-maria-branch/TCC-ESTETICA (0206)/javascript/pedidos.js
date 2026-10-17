@@ -199,12 +199,26 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
         });
 
-        // Caso alguma das abas fique vazia após a distribuição
+    // Caso alguma das abas fique vazia após a distribuição, mostra o bloco com o botão para a loja
         if (containerAndamento.innerHTML.trim() === '') {
-            containerAndamento.innerHTML = `<p style="text-align:center; padding: 3rem; color: var(--gray);">Nenhum pedido a caminho no momento.</p>`;
+            containerAndamento.innerHTML = `
+                <div class="empty-orders" style="display: flex;">
+                    <div class="empty-icon"><i class="fa-solid fa-box-open"></i></div>
+                    <h2>Nenhum pedido a caminho</h2>
+                    <p>Não tem nenhum pedido em trânsito no momento.</p>
+                    <a href="loja.html" class="shop-button"><i class="fa-solid fa-store"></i> Ir para a loja</a>
+                </div>
+            `;
         }
         if (containerEntregues.innerHTML.trim() === '') {
-            containerEntregues.innerHTML = `<p style="text-align:center; padding: 3rem; color: var(--gray);">Nenhum pedido entregue ainda.</p>`;
+            containerEntregues.innerHTML = `
+                <div class="empty-orders" style="display: flex;">
+                    <div class="empty-icon"><i class="fa-solid fa-box"></i></div>
+                    <h2>Nenhum pedido entregue</h2>
+                    <p>Ainda não tem pedidos concluídos no histórico.</p>
+                    <a href="loja.html" class="shop-button"><i class="fa-solid fa-store"></i> Ir para a loja</a>
+                </div>
+            `;
         }
 
     } catch (err) {
