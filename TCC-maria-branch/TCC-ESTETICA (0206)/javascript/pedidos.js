@@ -35,23 +35,25 @@ document.addEventListener('DOMContentLoaded', async () => {
     };
 
     // Função para calcular a etapa atual com base nos dias passados desde a compra
-    function calcularStatusEntrega(criadoEm) {
+   function calcularStatusEntrega(criadoEm) {
         const dataCriacao = new Date(criadoEm);
         const agora = new Date();
         const diffDias = Math.floor((agora - dataCriacao) / (1000 * 60 * 60 * 24));
 
         if (diffDias >= 6) {
-            return { etapa: 6, progresso: 100, statusTexto: "Entregue", statusClasse: "delivered", entregue: true };
+            return { etapa: 7, progresso: 100, statusTexto: "Entregue", statusClasse: "delivered", entregue: true };
         } else if (diffDias === 5) {
-            return { etapa: 5, progresso: 83, statusTexto: "Em trânsito", statusClasse: "transit", entregue: false };
-        } else if (diffDias >= 3) {
-            return { etapa: 4, progresso: 67, statusTexto: "Em trânsito", statusClasse: "transit", entregue: false };
+            return { etapa: 6, progresso: 85, statusTexto: "Saiu para entrega", statusClasse: "transit", entregue: false };
+        } else if (diffDias === 4) {
+            return { etapa: 5, progresso: 68, statusTexto: "Em trânsito", statusClasse: "transit", entregue: false };
+        } else if (diffDias === 3) {
+            return { etapa: 4, progresso: 50, statusTexto: "Em trânsito", statusClasse: "transit", entregue: false };
         } else if (diffDias === 2) {
-            return { etapa: 3, progresso: 50, statusTexto: "Em trânsito", statusClasse: "transit", entregue: false };
+            return { etapa: 3, progresso: 33, statusTexto: "Preparando", statusClasse: "transit", entregue: false };
         } else if (diffDias === 1) {
-            return { etapa: 2, progresso: 33, statusTexto: "Em trânsito", statusClasse: "transit", entregue: false };
+            return { etapa: 2, progresso: 20, statusTexto: "Pagamento aprovado", statusClasse: "transit", entregue: false };
         } else {
-            return { etapa: 1, progresso: 15, statusTexto: "Preparando", statusClasse: "transit", entregue: false };
+            return { etapa: 1, progresso: 10, statusTexto: "Pedido realizado", statusClasse: "transit", entregue: false };
         }
     }
 
