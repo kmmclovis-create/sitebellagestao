@@ -1940,22 +1940,15 @@ img {
         box-sizing: border-box;
     }
 
+   /* Corrige o ícone de perfil no cabeçalho mobile */
+@media (max-width: 750px) {
     .header-icons a img {
         width: 2rem;
         height: 2rem;
         max-width: 2rem;
+        max-height: 2rem;
         object-fit: contain;
+        aspect-ratio: 1 / 1;
         flex-shrink: 0;
-    }
-}
-
-@media (max-width: 380px) {
-    .header-icons a {
-        flex-basis: 3.1rem;
-        width: 3.1rem;
-        min-width: 3.1rem;
-        max-width: 3.1rem;
-        height: 3.1rem;
-        min-height: 3.1rem;
     }
 }
