@@ -1778,3 +1778,15 @@ img {
         flex-shrink: 0;
     }
 }
+
+  @media (max-width: 750px) {
+    .header-icons a img {
+        width: 3rem;
+        height: 3rem;
+        max-width: 3rem;
+        max-height: 3rem;
+        object-fit: contain;
+        aspect-ratio: 1 / 1;
+        flex-shrink: 0;
+    }
+}
