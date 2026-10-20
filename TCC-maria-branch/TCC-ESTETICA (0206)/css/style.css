@@ -1232,3 +1232,520 @@ Rodapé com informações, links e redes sociais.
     font-weight: 700;
     line-height: 1;
 }
+
+
+
+/* =========================================================
+   CORREÇÕES DE RESPONSIVIDADE — SITE BELLA GESTÃO
+   Adicionar no final do style.css
+========================================================= */
+
+/* Evita rolagem horizontal e elementos maiores que a tela. */
+html,
+body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: clip;
+}
+
+img {
+    max-width: 100%;
+}
+
+/* Corrige as colunas que podem ultrapassar a tela. */
+.home-content,
+.about-content,
+.about-image,
+.service-card,
+.service-info,
+.contact-info > div,
+.footer-box {
+    min-width: 0;
+}
+
+.home-content,
+.about-content,
+.service-info,
+.footer-box {
+    overflow-wrap: anywhere;
+}
+
+/* =========================================================
+   CABEÇALHO
+========================================================= */
+
+.header {
+    width: 100%;
+    min-width: 0;
+    gap: 1.5rem;
+}
+
+.header .logo,
+.header .logo-img {
+    flex-shrink: 0;
+}
+
+.navbar {
+    min-width: 0;
+}
+
+.header-icons {
+    align-items: center;
+    flex-shrink: 0;
+}
+
+/* =========================================================
+   TABLETS
+========================================================= */
+
+@media (max-width: 850px) {
+    .header {
+        padding: 0 3%;
+        gap: 1rem;
+    }
+
+    .menu-icon {
+        display: block;
+        order: 3;
+        flex-shrink: 0;
+    }
+
+    .header-icons {
+        order: 2;
+        margin-left: auto;
+        margin-right: 1rem;
+        gap: 0.8rem;
+    }
+
+    .navbar {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        width: 100%;
+        max-height: calc(100vh - 7rem);
+        overflow-y: auto;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        background: #fff;
+        border-top: 1px solid var(--border);
+        box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.05);
+    }
+
+    #menu-toggle:checked ~ .navbar {
+        display: flex;
+    }
+
+    .navbar a {
+        width: 100%;
+        padding: 1.5rem 2rem;
+        border-bottom: 1px solid var(--border);
+        font-size: 1.5rem;
+    }
+
+    .navbar a::after {
+        display: none;
+    }
+
+    .about-row {
+        gap: 3rem;
+    }
+
+    .about-image,
+    .about-content {
+        flex: 1 1 100%;
+    }
+
+    .about-image img {
+        width: 100%;
+        height: auto;
+        min-height: 30rem;
+        max-height: 45rem;
+        object-fit: cover;
+    }
+
+    .service-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 2rem;
+    }
+
+    .contact-info {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    /* Corrige o rodapé: as regras antigas usavam
+       seletores que não correspondiam ao HTML. */
+    .footer {
+        padding: 4rem 5% 2rem;
+    }
+
+    .footer-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 3rem;
+    }
+}
+
+/* =========================================================
+   CELULARES
+========================================================= */
+
+@media (max-width: 600px) {
+    html {
+        font-size: 55%;
+        scroll-padding-top: 7rem;
+    }
+
+    body {
+        font-size: 1.5rem;
+    }
+
+    /* Cabeçalho */
+    .header {
+        height: 7rem;
+        padding: 0 1.2rem;
+        gap: 0.7rem;
+    }
+
+    .logo {
+        font-size: 2.4rem;
+        letter-spacing: -0.05rem;
+    }
+
+    .logo-img {
+        height: 4.5rem;
+        max-width: 13rem;
+        object-fit: contain;
+    }
+
+    .header-icons {
+        margin-left: auto;
+        margin-right: 0;
+        gap: 0.6rem;
+    }
+
+    .header-icons a,
+    .cart-icon {
+        width: 3.5rem;
+        height: 3.5rem;
+        flex-shrink: 0;
+    }
+
+    .menu-icon {
+        display: block;
+        order: 3;
+        flex-shrink: 0;
+        padding: 0.4rem;
+        font-size: 2.4rem;
+    }
+
+    .navbar {
+        top: 100%;
+        left: 0;
+        right: 0;
+        width: 100%;
+        max-height: calc(100dvh - 7rem);
+        overflow-y: auto;
+        padding: 0;
+    }
+
+    .navbar a {
+        padding: 1.5rem 2rem;
+        font-size: 1.5rem;
+    }
+
+    /* Espaçamento das seções */
+    section {
+        padding: 5rem 2rem;
+        scroll-margin-top: 7rem;
+    }
+
+    /* Página inicial */
+    .home {
+        min-height: 0;
+        padding: 10rem 2rem 5rem;
+        gap: 2.5rem;
+        background-position: center;
+    }
+
+    .home-content {
+        flex: 1 1 100%;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .home-content h1 {
+        font-size: clamp(3.2rem, 8vw, 4rem);
+        line-height: 1.2;
+        overflow-wrap: break-word;
+    }
+
+    .home-content p {
+        max-width: 100%;
+        font-size: 1.5rem;
+        line-height: 1.8;
+    }
+
+    .home-buttons {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1rem;
+    }
+
+    .home-buttons .btn {
+        width: 100%;
+        margin-top: 0.5rem;
+        padding: 1.3rem 1.5rem;
+        text-align: center;
+    }
+
+    /* Títulos e descrições */
+    .heading {
+        font-size: 3.2rem;
+        line-height: 1.25;
+        overflow-wrap: break-word;
+    }
+
+    .section-description {
+        width: 100%;
+        font-size: 1.5rem;
+        line-height: 1.7;
+    }
+
+    /* Sobre nós */
+    .about-row {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 3rem;
+        margin-top: 2.5rem;
+    }
+
+    .about-image,
+    .about-content {
+        width: 100%;
+        flex: 1 1 auto;
+    }
+
+    .about-image img {
+        width: 100%;
+        height: 35rem;
+        min-height: 0;
+        max-height: none;
+        border-radius: 0.8rem;
+    }
+
+    .experience {
+        width: 11rem;
+        height: 11rem;
+        right: 1rem;
+        bottom: 1.5rem;
+        border-width: 0.5rem;
+    }
+
+    .experience strong {
+        font-size: 3rem;
+    }
+
+    .about-content h3 {
+        font-size: 3rem;
+        line-height: 1.25;
+    }
+
+    .about-content p {
+        font-size: 1.5rem;
+        line-height: 1.8;
+    }
+
+    .about-list {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 1.2rem;
+    }
+
+    /* Benefícios */
+    .icons-container {
+        grid-template-columns: minmax(0, 1fr);
+        padding: 2rem;
+        gap: 0.5rem;
+    }
+
+    .icons {
+        padding: 1.5rem 0;
+        gap: 1.5rem;
+    }
+
+    .info h3 {
+        font-size: 1.5rem;
+    }
+
+    .info span {
+        font-size: 1.3rem;
+        line-height: 1.5;
+    }
+
+    /* Serviços */
+    .service-group {
+        margin-top: 3rem;
+    }
+
+    .service-group-title {
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.8rem;
+    }
+
+    .service-group-title h3 {
+        white-space: normal;
+        font-size: 2.4rem;
+    }
+
+    .service-group-title span {
+        font-size: 1.3rem;
+    }
+
+    .service-group-title::after {
+        display: none;
+    }
+
+    .service-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 2rem;
+        width: 100%;
+    }
+
+    .service-card {
+        width: 100%;
+    }
+
+    .service-image {
+        width: 100%;
+        height: clamp(18rem, 58vw, 25rem);
+    }
+
+    .service-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .service-info {
+        padding: 3rem 1.8rem 2rem;
+    }
+
+    .service-info p {
+        min-height: 0;
+        font-size: 1.4rem;
+        line-height: 1.7;
+    }
+
+    /* Contato */
+    .contact-info {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 1.5rem;
+        width: 100%;
+    }
+
+    .contact-info > div {
+        width: 100%;
+        padding: 2rem 1.5rem;
+        gap: 1.2rem;
+    }
+
+    .contact-info > div > i {
+        width: 4rem;
+        height: 4rem;
+    }
+
+    .contact-info strong {
+        overflow-wrap: anywhere;
+    }
+
+    /* Rodapé */
+    .footer {
+        margin-top: 0;
+        padding: 4rem 2rem 2rem;
+    }
+
+    .footer-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 2.5rem;
+        padding-bottom: 3rem;
+    }
+
+    .footer-box.brand p {
+        max-width: 100%;
+    }
+
+    .social {
+        flex-wrap: wrap;
+    }
+
+    .credit {
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        gap: 1rem;
+        font-size: 1.2rem;
+        line-height: 1.7;
+    }
+}
+
+/* =========================================================
+   CELULARES ESTREITOS
+========================================================= */
+
+@media (max-width: 380px) {
+    .header {
+        padding: 0 0.8rem;
+        gap: 0.4rem;
+    }
+
+    .logo {
+        font-size: 2rem;
+    }
+
+    .logo-img {
+        height: 3.8rem;
+        max-width: 10rem;
+    }
+
+    .header-icons {
+        gap: 0.4rem;
+    }
+
+    .header-icons a,
+    .cart-icon {
+        width: 3.1rem;
+        height: 3.1rem;
+    }
+
+    .menu-icon {
+        font-size: 2.1rem;
+    }
+
+    .cart-icon #cartCount {
+        top: -0.4rem;
+        right: -0.4rem;
+        min-width: 1.6rem;
+        height: 1.6rem;
+        font-size: 0.9rem;
+    }
+
+    section {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+
+    .home {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+
+    .heading {
+        font-size: 2.9rem;
+    }
+
+    .contact-info > div {
+        padding: 1.5rem 1rem;
+    }
+}
