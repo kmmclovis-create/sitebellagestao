@@ -1599,3 +1599,327 @@ Rodapé com informações, links e redes sociais.
 .credit i {
   color: var(--pink);
 }
+
+
+
+/* =========================================================
+   CORREÇÕES DE RESPONSIVIDADE — PROCEDIMENTOS
+   Adicionar no final do procedimentos.css
+========================================================= */
+
+/* Evita que elementos ultrapassem a largura da tela. */
+html,
+body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: clip;
+}
+
+img {
+    max-width: 100%;
+}
+
+/* Impede que os elementos do cabeçalho encolham de forma incorreta. */
+.header {
+    width: 100%;
+    min-width: 0;
+    gap: 1.5rem;
+}
+
+.header .logo,
+.header .logo-img {
+    flex-shrink: 0;
+}
+
+.navbar {
+    min-width: 0;
+}
+
+.header-icons {
+    flex-shrink: 0;
+    align-items: center;
+}
+
+/* Tablet */
+@media (max-width: 900px) {
+    .header {
+        padding-left: 4%;
+        padding-right: 4%;
+        gap: 1rem;
+    }
+
+    .navbar {
+        gap: 1.2rem;
+    }
+
+    .navbar a {
+        font-size: 1.3rem;
+    }
+
+    .container-procedimentos {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 2rem;
+    }
+
+    .footer-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 3rem;
+    }
+}
+
+/* Celulares */
+@media (max-width: 750px) {
+    .header {
+        height: 7rem;
+        min-height: 7rem;
+        padding: 0 1.5rem;
+        gap: 1rem;
+    }
+
+    .header .logo {
+        font-size: 2.4rem;
+    }
+
+    .header .logo-img {
+        height: 4.5rem;
+        max-width: 14rem;
+    }
+
+    .menu-icon {
+        display: block;
+        order: 3;
+        flex-shrink: 0;
+        font-size: 2.5rem;
+        padding: 0.5rem;
+    }
+
+    .header-icons {
+        order: 2;
+        margin-left: auto;
+        gap: 0.8rem;
+    }
+
+    .header-icons a {
+        width: 3.6rem;
+        height: 3.6rem;
+        flex-shrink: 0;
+    }
+
+    .navbar {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        width: 100%;
+        max-height: calc(100vh - 7rem);
+        overflow-y: auto;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 0;
+        background: #fff;
+        border-top: 1px solid var(--border);
+        box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.08);
+    }
+
+    #menu-toggle:checked ~ .navbar {
+        display: flex;
+    }
+
+    .navbar a {
+        width: 100%;
+        min-height: 4.8rem;
+        padding: 1.4rem 2rem;
+        border-bottom: 1px solid var(--border);
+        font-size: 1.5rem;
+    }
+
+    .navbar a::after {
+        display: none;
+    }
+
+    /* Área de introdução */
+    .procedimentos-hero {
+        padding: 10rem 2rem 3.5rem;
+    }
+
+    .procedimentos-intro .section-label {
+        font-size: 1.2rem;
+        letter-spacing: 0.15rem;
+    }
+
+    .procedimentos-intro h1 {
+        font-size: clamp(2.8rem, 7vw, 3.8rem);
+        line-height: 1.2;
+        overflow-wrap: break-word;
+    }
+
+    .procedimentos-intro p {
+        width: 100%;
+        font-size: 1.5rem;
+        line-height: 1.7;
+    }
+
+    /* Campo de pesquisa */
+    .search-container {
+        width: 100%;
+        max-width: 100%;
+        margin-top: 2.5rem;
+    }
+
+    .input {
+        width: 100%;
+        min-width: 0;
+        height: 4.8rem;
+        padding: 0 4.5rem;
+        font-size: 1.4rem;
+    }
+
+    /* Categorias */
+    .categoria {
+        padding: 3.5rem 1.5rem 0;
+    }
+
+    .titulo-categoria {
+        gap: 1rem;
+        margin-bottom: 2rem;
+        font-size: 2.5rem;
+    }
+
+    /* Um card por linha no celular */
+    .container-procedimentos {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 2rem;
+        width: 100%;
+    }
+
+    .procedimento {
+        width: 100%;
+        min-width: 0;
+        min-height: 0;
+    }
+
+    .imagem-procedimento {
+        width: 100%;
+        height: clamp(18rem, 60vw, 26rem);
+    }
+
+    .imagem-procedimento img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .procedimento h3 {
+        padding: 2rem 1.8rem 1rem;
+        font-size: 2rem;
+    }
+
+    .procedimento p {
+        padding: 0 1.8rem;
+        font-size: 1.4rem;
+        line-height: 1.7;
+        overflow-wrap: anywhere;
+    }
+
+    .opcoes-valor {
+        margin: 1.8rem 1.8rem 0;
+        gap: 0.8rem;
+        font-size: 1.4rem;
+    }
+
+    .opcoes-valor label {
+        font-size: 1.4rem;
+    }
+
+    .variant-select {
+        width: 100%;
+        max-width: 100%;
+        min-height: 4.5rem;
+        font-size: 1.4rem;
+    }
+
+    .procedimento button {
+        width: calc(100% - 3.6rem);
+        min-height: 4.5rem;
+        margin: 2rem 1.8rem;
+        padding: 1.2rem 1rem;
+        font-size: 1.4rem;
+    }
+
+    /* Mensagem de pesquisa sem resultados */
+    .nenhum-produto {
+        padding: 3rem 1.5rem;
+    }
+
+    /* Rodapé */
+    .footer {
+        margin-top: 5rem;
+        padding: 4rem 2rem 2rem;
+    }
+
+    .footer-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 2.5rem;
+        padding-bottom: 3rem;
+    }
+
+    .footer-box {
+        min-width: 0;
+        overflow-wrap: anywhere;
+    }
+
+    .footer-box.brand p {
+        max-width: 100%;
+    }
+
+    .credit {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+        font-size: 1.2rem;
+        line-height: 1.6;
+    }
+}
+
+/* Celulares muito estreitos */
+@media (max-width: 380px) {
+    .header {
+        padding: 0 1rem;
+        gap: 0.5rem;
+    }
+
+    .header .logo {
+        font-size: 2rem;
+        letter-spacing: -0.05rem;
+    }
+
+    .header .logo-img {
+        max-width: 11rem;
+        height: 4rem;
+    }
+
+    .header-icons {
+        gap: 0.5rem;
+    }
+
+    .header-icons a {
+        width: 3.2rem;
+        height: 3.2rem;
+    }
+
+    .menu-icon {
+        font-size: 2.2rem;
+    }
+
+    .procedimentos-hero {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+
+    .titulo-categoria {
+        font-size: 2.2rem;
+    }
+}
